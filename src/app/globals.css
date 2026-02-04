@@ -1,0 +1,23 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+ background-color: #78787840;
+ font-family: Inter;
+}
+
+
+/* Global IconButton hover background */
+.MuiIconButton-root:hover,
+.MuiIconButton-root:active,
+.MuiIconButton-root:focus-visible {
+  background-color: transparent !important;
+}
+
+.MuiTouchRipple-root {
+  display: none !important;
+}
