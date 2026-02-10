@@ -1,11 +1,10 @@
-import { Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Typography } from "@mui/material";
+import { Box, Button, Dialog, DialogActions,    Typography } from "@mui/material";
 import { useContactStore } from "./controller/contactController";
 import Image from "next/image";
 
 export default function DeleteContact() {
     const { openDeleteContact, closeDeleteContact, deleteContactOpen } = useContactStore();
     return (
-
         <Dialog
             open={deleteContactOpen}
             onClose={closeDeleteContact}
@@ -18,8 +17,9 @@ export default function DeleteContact() {
                 </Box>
                 <Box sx={{ bgcolor: "#FF6D591A", borderRadius: "50px", p: 2, mb: 2 }}>
                     <Image src="/delWrn.png" alt="delete" width={35} height={35} />
-                </Box>
-                <Typography id="alert-dialog-title" sx={{ color: "#1E1E1E", fontSize: "20px", fontWeight: "500", mb: 1 }}>
+                </Box>  
+                <Typography id="alert-dialog-title" sx={{ color: "#1E1E1E", fontSize: "20px", fontWeight: "500",
+                    textAlign:"center", mb: 1 }}>
                     Are you sure you want to delete this contact?
                 </Typography>
 
@@ -35,7 +35,7 @@ export default function DeleteContact() {
                     contact "John Peter" and remove all associated data.
                 </Typography>
 
-                <DialogActions sx={{ display: "flex", justifyContent: "center", gap: 2, width: "100%" }}>
+                <DialogActions sx={{ display: "flex", flexDirection: {xs: "column", md: "row"},  justifyContent: "center", gap: 2, width: "100%" }}>
                     <Button onClick={closeDeleteContact} sx={{
                         color: "#1E1E1E", fontWeight: 600, textTransform: "none",
                         px: 10, py: 1.5, border: "1px solid #1E1E1E20", borderRadius: "12px"

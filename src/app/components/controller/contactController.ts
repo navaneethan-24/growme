@@ -1,7 +1,6 @@
 import { create } from "zustand";
 import _ from "lodash";
 
-// Default state
 const getDefaultState = () => ({
   // Drawers
   filterDrawerOpen: false,
@@ -11,6 +10,7 @@ const getDefaultState = () => ({
   chip: false,
   deleteContactOpen: false,
   SlideNavOpen: false,
+  isMobileDrawerOpen: false,
 
   // Filter values
   selectedCountry: [] as string[],
@@ -77,8 +77,12 @@ const closeEditContactDrawer = (set: any) => () => set({ editDrawerOpen: false }
 const openDeleteContact = (set: any) => () => set({ deleteContactOpen: true });
 const closeDeleteContact = (set: any) => () => set({ deleteContactOpen: false });
 
+const openMobileDrawer = (set: any) => () => set({ isMobileDrawerOpen: true });
+const closeMobileDrawer = (set: any) => () => set({ isMobileDrawerOpen: false });
 
-// --- FILTER ACTIONS ---
+
+
+// FILTER ACTIONS 
 const setFilterValue = (set: any) => (key: string, value: any) => set({ [key]: value });
 const resetFilters = (set: any, get: any) => () => {
   set({
@@ -90,7 +94,7 @@ const resetFilters = (set: any, get: any) => () => {
   });
 };
 
-// --- PAGINATION ACTIONS ---
+// PAGINATION ACTIONS 
 const setRowValue = (set: any) => (val: number) => set({ value: val, page: 1 });
 
 const totalPages = (get: any) => (totalRows: number) =>
@@ -119,11 +123,11 @@ const setContactPage = (set: any, get: any) => () => set({ activePage: "contact"
 const setGroupPage = (set: any, get: any) => () => set({ activePage: "group" });
 
 const toggleSlideNav = (set: any, get: any) => () =>
-  set({ SlideNavOpen: !get().SlideNavOpen } );
+  set({ SlideNavOpen: !get().SlideNavOpen });
 
 
 export const useContactStore = create<any>((set: any, get: any) => ({
-  ...getDefaultState(), 
+  ...getDefaultState(),
 
   // Drawers
   openFilterDrawer: openFilterDrawer(set),
@@ -140,6 +144,9 @@ export const useContactStore = create<any>((set: any, get: any) => ({
 
   openDeleteContact: openDeleteContact(set),
   closeDeleteContact: closeDeleteContact(set),
+
+  openMobileDrawer: openMobileDrawer(set),
+  closeMobileDrawer: closeMobileDrawer(set),
 
   // Filter actions
   setFilterValue: setFilterValue(set),
@@ -161,5 +168,6 @@ export const useContactStore = create<any>((set: any, get: any) => ({
   // slidebat toggle actions
   toggleSlideNav: toggleSlideNav(set, get),
 
+  
 
 }));
