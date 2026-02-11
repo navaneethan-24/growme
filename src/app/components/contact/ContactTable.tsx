@@ -1,10 +1,10 @@
-import { Group } from "@mui/icons-material";
-import { Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Checkbox, Chip, IconButton, Paper, Typography, Button, Pagination, PaginationItem, Select, MenuItem, TableFooter, Menu, Popover, Card, CardContent, Divider } from "@mui/material";
+import { Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Checkbox, IconButton, Paper, Typography, MenuItem, Popover, Card, CardContent, Divider, } from "@mui/material";
 import Image from "next/image";
 import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined';
-import { mockrows } from "./Services/Mock";
-import { useContactStore } from "./controller/contactController";
+import { mockrows } from "../Services/Mock";
+import { useContactStore } from "../controller/contactController";
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import PaginationList from "./PaginationList";
 
 export default function ContactTable({ rows }: { rows: any[] }) {
     const { value: rowsPerPage,
@@ -33,6 +33,7 @@ export default function ContactTable({ rows }: { rows: any[] }) {
     ];
     const getRandomColor = () =>
         colors[Math.floor(Math.random() * colors.length)];
+    
     return (
         < >
             {/* DeskTop view */}
@@ -364,103 +365,20 @@ export default function ContactTable({ rows }: { rows: any[] }) {
 
             </Box>
 
-            {/* contact footer */}
-            <Box sx={{
-                display: 'flex', flexDirection: { xs: "column", md: "row" }, justifyContent: "space-between", alignItems: "center",
-                gap: { xs: 2, md: 3 }, mt: { xs: 3, md: 2 },
-            }}>
-                {/* page result */}
-                <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", gap: 3, }}>
-                    <Typography sx={{ fontSize: "12px", color: '#717579' }}>  Rows per page:</Typography>
-                    <Select value={rowsPerPage} onChange={(e) => setRowValue(Number(e.target.value))}
-                        IconComponent={(props) => <KeyboardArrowDownOutlinedIcon {...props}
-                            sx={{ color: '#FF6501 !important', fontSize: "25px" }} />}
-                        sx={{
-                            width: "80px", height: "38px", backgroundColor: "#FFFFFF", borderRadius: "30px",
-                            fontSize: "15px", textAlign: 'center', border: "1px solid transparent",
-                            "& fieldset": {
-                                border: "none",
-                            },
-                        }}>
-                        {rowCounts.map((count: number) => (
-                            <MenuItem key={count} value={count}  >
-                                {count}
-                            </MenuItem>
-                        ))}
-                    </Select>
-                    <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", gap: 1, }}>
-                        <Typography sx={{ fontSize: "14px" }}>{rows.length} </Typography>
-                        <Typography sx={{ fontSize: "14px" }}>results</Typography>
-                    </Box>
-                </Box>
 
-                {/* pagination */}
-                <Box >
-                    <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", gap: 1, }} >
-                        {/* Prev */}
-                        <Button disabled={page === 1} onClick={() => setPage(page - 1, tableRowData.length)}
-                            sx={{
-                                px: 3, py: 1, border: "1px solid rgba(255, 101, 1, 0.2)", borderRadius: "12px",
-                                display: "flex", alignItems: "center", gap: 1, justifyContent: "center"
+            <PaginationList
+                rowsPerPage={rowsPerPage}
+                rowCounts={rowCounts}
+                page={page}
+                totalPages={total}
+                pages={pages}
+                totalItems={tableRowData.length}
+                onPageChange={(p: any) => setPage(p, tableRowData.length)}
+                onRowsPerPageChange={(v: any) => setRowValue(v)}
+            />
 
-                            }}
-                        >
-                            <Box sx={{ width: 20, height: 20, position: "relative" }}>
-                                <Image
-                                    src="/prvpg.png" alt="previous" fill style={{ objectFit: "contain" }}
-                                />
-                            </Box>
 
-                            <Typography sx={{
-                                display: { xs: "none", sm: "block" }, fontSize: "15px", fontWeight: 500,
-                                color: "#FF6501", textTransform: "none",
-                            }}>
-                                Previous
-                            </Typography>
 
-                        </Button>
-
-                        <Box sx={{
-                            display: 'flex', justifyContent: "center", alignItems: "center",
-                            bgcolor: "rgba(255, 255, 255, 1)", borderRadius: "22px", p: 0.5,
-                        }}>
-                            {pages.map((p: any) => (
-                                <Button key={p} onClick={() => setPage(p, tableRowData.length)}
-                                    sx={{
-                                        fontSize: "15px", fontWeight: 500, minWidth: "40px", minHeight: "30px", borderRadius: "50px",
-                                        bgcolor: p === page ? "#FF6501" : "transparent",
-                                        color: p === page ? "#fff" : "#202020",
-                                        "&:hover": { bgcolor: p === page ? "#FF6501" : "transparent", },
-                                    }}
-                                >
-                                    {p}
-                                </Button>
-                            ))}
-                        </Box>
-
-                        {/* Next */}
-                        <Button disabled={page === total} onClick={() => setPage(page + 1, tableRowData.length)}
-                            sx={{
-                                px: 3, py: 1, border: "1px solid rgba(255, 101, 1, 0.2)", borderRadius: "12px",
-                                fontSize: "15px", fontWeight: 500, color: "#FF6501", textTransform: "none",
-                                display: "flex", alignItems: "center", gap: 1, justifyContent: "center"
-                            }}
-                        >
-
-                            <Typography sx={{
-                                display: { xs: "none", sm: "block" }, fontSize: "15px", fontWeight: 500,
-                                color: "#FF6501", textTransform: "none",
-                            }}>
-                                Next
-                            </Typography>
-                            <Box sx={{ width: 20, height: 20, position: "relative" }}>
-                                <Image src="/nxtpg.png" alt="previous" fill style={{ objectFit: "contain" }} />
-                            </Box>
-                        </Button>
-                    </Box>
-                </Box>
-
-            </Box>
         </>
 
     );

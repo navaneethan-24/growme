@@ -2,25 +2,16 @@
 
 import { Autocomplete, Box, Drawer, IconButton, TextField, Typography, Button, FormControl, MenuItem, Select, Chip } from "@mui/material";
 import Image from "next/image";
-import SearchIcon from "@mui/icons-material/Search";
+
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
-import { useContactStore } from "./controller/contactController";
-import FilterTag from "./custmUx/FilterTag";
+import { useContactStore } from "../controller/contactController";
 import CancelIcon from '@mui/icons-material/Cancel';
-import ToggleChipbtn from "./custmUx/ToggleChipbtn";
+import ToggleChipbtn from "../../custmUx/ToggleChipbtn";
 
-const countries = ["United States", "Canada", "United Kingdom", "Australia", "India", "Germany", "France", "Japan", "China", "Brazil", "Russia", "Mexico", "Italy", "South Korea", "South Africa"];
-const tags = ["Food", "Sweet", "Offers", "Tech", "Gym", "Beauty"];
-const groups = ["VIP Group", "Main Group", "Family", "Friends", "Work", "Clients", "Leads", "Blocked", "Archived"];
-const optInStatusList = ["Opted In", "Opted Out", "Pending"];
-const professionsList = ["Developer", "Designer", "Manager", "Student", "Business"];
-const gendersList = ["Male", "Female", "Other"];
-const lastEngagementList = ["Today", "Yesterday", "Last 7 Days", "Last 30 Days", "Inactive"];
 
-export default function Filter() {
+export default function Filter({ onClose }: { onClose: () => void }) {
   const {
-
     selectedCountry,
     selectedTag,
     selectedGroups,
@@ -40,20 +31,7 @@ export default function Filter() {
 
 
   return (
-    <Drawer
-      anchor="right"
-      open={filterDrawerOpen}
-      onClose={closeFilterDrawer}
-      slotProps={{
-        paper: {
-          sx: {
-            height: "calc(100vh - 64px)", width: { xs: "95vw", md: "50vw" }, mt: "74px",
-            borderRadius: "22px 0px 0px 0px", border: "1px solid rgba(255, 101, 1, 0.5)", pb: 4,
-            overflowY: "scroll", scrollbarWidth: "none", "&::-webkit-scrollbar": { display: "none" },
-          }
-        }
-      }}
-    >
+    <Box>
       {/* HEADER */}
       <Box sx={{ px: { xs: 2, sm: 4 }, py: 2, borderBottom: "1px solid rgba(255, 101, 1, 0.5)", display: "flex", justifyContent: "space-between" }}>
         <Box>
@@ -231,6 +209,6 @@ export default function Filter() {
           </Button>
         </Box>
       </Box>
-    </Drawer>
+    </Box>
   );
 }

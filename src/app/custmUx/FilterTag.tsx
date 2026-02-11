@@ -1,4 +1,3 @@
-// ./custmUx/FilterTag/FilterTag.tsx
 import React from "react";
 
 interface FilterTagProps {

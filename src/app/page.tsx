@@ -1,8 +1,8 @@
 import { Box } from "@mui/material";
 import Header from "./components/landing-page/Header";
-import Contact from "./custmain/Contact";
 import Footer from "./components/landing-page/Footer";
-import SlideNav from "./components/SlideNav";
+import SlideNav from "./components/landing-page/SlideNav";
+import ContactGroup from "./components/contact-Group";
 
 export default function Home() {
   return (
@@ -10,7 +10,7 @@ export default function Home() {
       <SlideNav />
       <Box >
         <Header />
-        <Contact />
+        <ContactGroup />
         <Footer />
       </Box>
 

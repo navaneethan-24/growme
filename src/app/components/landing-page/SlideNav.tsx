@@ -1,11 +1,11 @@
 "use client";
 import { Box, Drawer, IconButton, Typography } from "@mui/material";
-import { useContactStore } from "./controller/contactController";
+import { useContactStore } from "../controller/contactController";
 import Image from "next/image";
 import LocalPhoneOutlinedIcon from '@mui/icons-material/LocalPhoneOutlined';
 
 export default function SlideNav() {
-    const { SlideNavOpen, toggleSlideNav, isMobileDrawerOpen, openMobileDrawer, closeMobileDrawer } = useContactStore();
+    const { SlideNavOpen, toggleSlideNav, isMobileDrawerOpen,  closeMobileDrawer } = useContactStore();
     return (
         <Box>
             <Drawer variant="permanent" anchor="left"
@@ -312,12 +312,7 @@ export default function SlideNav() {
                         </IconButton>
                     </Box>
                 </Box>
-
-
             </Drawer>
-
         </Box>
-
-
     )
 }   

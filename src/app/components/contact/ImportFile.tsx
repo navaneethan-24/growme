@@ -1,25 +1,14 @@
 "use client";
 
-import { Autocomplete, Box, Drawer, IconButton, TextField, Typography, Button, FormControl, MenuItem, Select } from "@mui/material";
+import {  Box, Drawer, IconButton, Typography, Button,  } from "@mui/material";
 import Image from "next/image";
-import SearchIcon from "@mui/icons-material/Search";
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import { useContactStore } from "./controller/contactController";
+import { useContactStore } from "../controller/contactController";
 
-export default function ImportContact() {
+export default function ImportFile({onClose}: {onClose: () => void}) {
   const {importDrawerOpen, openImportDrawer, closeImportDrawer} = useContactStore();
 
   return (
-    <Drawer
-      anchor="right"
-      open={importDrawerOpen}
-      onClose={closeImportDrawer}
-      slotProps={{
-        paper: {
-          sx: { height: "calc(100vh - 64px)", width: { xs: "70vw", md: "50vw" }, mt: "74px", borderRadius: "22px 0px 0px 0px", border: "1px solid rgba(255, 101, 1, 0.5)", pb: 4 }
-        }
-      }}
-    >
+    <Box>
       {/* HEADER */}
       <Box sx={{
          px: { xs: 2, sm: 4 }, py: 2, borderBottom: "1px solid rgba(255, 101, 1, 0.5)",
@@ -61,6 +50,6 @@ export default function ImportContact() {
       </Box>
 
 
-    </Drawer>
+    </Box>
   );
 }

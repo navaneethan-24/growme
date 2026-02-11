@@ -4,9 +4,9 @@ import { Autocomplete, Box, Drawer, IconButton, TextField, Typography, Button, F
 import Image from "next/image";
 
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import { useContactStore } from "./controller/contactController";
+import { useContactStore } from "../controller/contactController";
 import CancelIcon from '@mui/icons-material/Cancel';
-import ToggleChipbtn from "./custmUx/ToggleChipbtn";
+import ToggleChipbtn from "../../custmUx/ToggleChipbtn";
 
 
 const genders = ["Male", "Female", "Other"];
@@ -14,7 +14,7 @@ const profession = ["Developer", "Designer", "Manager", "Student", "Business"];
 const groups = ["VIP Group", "Main Group", "Family", "Friends", "Work", "Clients", "Leads", "Blocked", "Archived"]
 const tags = ["Food", "Sweet", "Offers", "Tech", "Gym", "Beauty"]
 
-export default function EditContact() {
+export default function EditContact({onClose}: {onClose: () => void}) {
 
   const { editDrawerOpen, day, month, year } = useContactStore();
   const addContactGender = useContactStore((state) => state.addContactGender);
@@ -25,16 +25,7 @@ export default function EditContact() {
 
 
   return (
-    <Drawer
-      anchor="right"
-      open={editDrawerOpen}
-      onClose={closeEditContactDrawer}
-      slotProps={{
-        paper: {
-          sx: { height: "calc(100vh - 64px)", width: { xs: "95vw", md: "60vw" }, mt: "74px", borderRadius: "22px 0px 0px 0px", border: "1px solid rgba(255, 101, 1, 0.5)", pb: 4 }
-        }
-      }}
-    >
+    <Box>
       {/* HEADER */}
       <Box sx={{ px: { xs: 2, sm: 4 }, py: 2, borderBottom: "1px solid rgba(255, 101, 1, 0.5)", display: "flex", justifyContent: "space-between" }}>
         <Box>
@@ -298,14 +289,7 @@ export default function EditContact() {
             Add
           </Button>
         </Box>
-
-
-
-
       </Box>
-
-
-
-    </Drawer >
+    </Box >
   );
 }

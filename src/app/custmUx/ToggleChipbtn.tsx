@@ -1,5 +1,6 @@
 import { Box } from '@mui/material';
-import { useContactStore } from '../controller/contactController';
+import { useContactStore } from '../components/controller/contactController';
+
 export default function ToggleChipbtn() {
     const { toggleChip, chip } = useContactStore();
 
