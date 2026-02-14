@@ -90,17 +90,16 @@ export default function ContactList() {
                     <Box sx={{ display: "flex", justifyContent: "center", alignContent: 'center', gap: { xs: 1, md: 2 } }}>
                         {/* SearchIcon */}
                         <Box sx={{
-                            display: { xs: "none", md: "flex" }, justifyContent: "flex-start", alignItems: "center",
-                            backgroundColor: "#FFFFFF", border: "1px solid #EFF0F6", borderRadius: "8px", minWidth: "120px",
-                            width: "300px", height: "50px", px: 1
+                            display: { xs: "none", md: "flex" }, alignItems: "center",
+                            bgcolor: "#FFFFFF", border: "1px solid #E2E8F0", borderRadius: "8px", minWidth: "120px",
+                            width: "300px", height: "50px", px: 1.5
                         }}>
-                            <IconButton>
-                                <Image src="/srch.png" alt="srch" width={15} height={15} style={{ objectFit: "contain" }} />
-                            </IconButton>
+                            <Image src="/srch.png" alt="srch" width={13} height={13} style={{ objectFit: "contain" }} />
+
 
                             <TextField placeholder="Search..." variant="standard" fullWidth
                                 slotProps={{ input: { disableUnderline: true } }}
-                                sx={{ "& input": { fontSize: "14px", fontWeight: "500", color: "#1E1E1E", } }}
+                                sx={{ "& input": { fontSize: "14px", fontWeight: "500", color: "#1E1E1E", ml: 1 } }}
                             />
 
                         </Box>
@@ -110,7 +109,7 @@ export default function ContactList() {
                         <Box onClick={openFilterDrawer} sx={{ cursor: "pointer" }}>
                             <Box sx={{
                                 display: { xs: "none", sm: "flex", }, flexDirection: "row", justifyContent: "center", alignItems: "center",
-                                backgroundColor: "#FFFFFF", border: "1px solid #EFF0F6", borderRadius: "8px",
+                                backgroundColor: "#FFFFFF", border: "1px solid #E2E8F0", borderRadius: "8px",
                                 width: "70px", height: "50px", gap: 1
                             }}>
                                 <Image src="/filter.png" alt="filter" width={12} height={12} />
@@ -123,14 +122,14 @@ export default function ContactList() {
 
                         {/* Import Contact */}
                         <Box onClick={openImportDrawer} sx={{
-                            display: { xs: "none", sm: "flex" }, justifyContent: "center", alignItems: "center", gap: 1, cursor: "pointer",
-                            backgroundColor: "#FFFFFF", border: "1px solid #EFF0F6", borderRadius: "8px", p: 2,
+                            display: { xs: "none", sm: "flex" }, justifyContent: "center", alignItems: "center", gap: 1,
+                            cursor: "pointer",
+                            backgroundColor: "#FFFFFF", borderRadius: "8px", p: 2,
                             maxWidth: "200px", height: "50px"
                         }}>
-                            <Typography sx={{
-                                fontSize: { xs: "10px", md: "15px" },
-                                fontWeight: "400", color: "#FF6501", textWrap: "nowrap"
-                            }}> Import Contacts </Typography>
+                            <Typography sx={{ fontSize: { xs: "10px", md: "15px" }, fontWeight: "600", color: "#FF6501", textWrap: "nowrap" }}>
+                                Import Contacts
+                            </Typography>
                             <Box sx={{ width: "2px", height: "30px", backgroundColor: "#7175791A" }} />
                             <KeyboardArrowDownIcon sx={{ color: "#FF6501" }} />
                         </Box>
@@ -280,7 +279,7 @@ export default function ContactList() {
                     }}>
                     <EditContact onClose={closeAddContactDrawer} />
                 </Drawer>
-                
+
                 <DeleteContact />
             </Container>
         </Box >

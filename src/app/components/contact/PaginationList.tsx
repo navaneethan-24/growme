@@ -31,7 +31,7 @@ export default function PaginationList({
 
         <Box sx={{
             display: 'flex', flexDirection: { xs: "column", md: "row" }, justifyContent: "space-between", alignItems: "center",
-            gap: { xs: 2, md: 3 }, mt: { xs: 3, md: 2 },
+            gap: { xs: 2, md: 3 }, mt: { xs: 3, md: 2 } ,
         }}>
             {/* page result */}
             <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", gap: 3, }}>
@@ -55,6 +55,7 @@ export default function PaginationList({
                 <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", gap: 1, }}>
                     <Typography sx={{ fontSize: "14px" }}>{mockrows.length} </Typography>
                     <Typography sx={{ fontSize: "14px" }}>results</Typography>
+                    
                 </Box>
             </Box>
 

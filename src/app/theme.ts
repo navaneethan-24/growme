@@ -2,7 +2,7 @@ import { createTheme } from "@mui/material/styles";
 
 const theme = createTheme({
     typography: {
-        fontFamily: "var(--font-inter), Inter, sans-serif",
+        fontFamily: "var(--font-inter)  "
     },
     palette: {
         background: {
@@ -12,17 +12,17 @@ const theme = createTheme({
     components: {
         MuiButton: {
             styleOverrides: {
-                root: {
+                root: {     
                     textTransform: "none",
                     minHeight: "unset",
-                    fontFamily: "var(--font-inter), Inter, sans-serif",
+                    fontFamily: "var(--font-inter)"
                 },
             },
         },
         MuiChip: {
             styleOverrides: {
                 root: {
-                    fontFamily: "var(--font-inter), Inter, sans-serif",
+                    fontFamily: "var(--font-inter)"
                 },
             },
         },
