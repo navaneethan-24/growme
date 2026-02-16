@@ -16,18 +16,35 @@ export default function Header() {
             sx={{
                 background: `linear-gradient(167deg,rgba(23, 23, 23, 1) 0%, rgba(255, 101, 1, 1) 50%, rgba(202, 53, 0, 1) 100%)`,
                 width: { xs: "100%", md: `calc(100% -  80px)` }, position: "fixed",
-                boxShadow: "none"
+                boxShadow: "none", overflow: "hidden"
             }}
         >
             <Toolbar sx={{
                 display: "flex", justifyContent: "space-between", alignItems: "center",
-                px: { xs: 2, md: 3 }
+                px: { xs: 2, md: 3 }, position: "relative",
             }}>
                 <Box sx={{ display: "flex", justifyContent: "flex-start", alignItems: "center", gap: 1 }}>
 
                     <Box onClick={openMobileDrawer} sx={{ display: { xs: "flex", md: "none" }, justifyContent: "center", alignItems: "center", gap: 1 }}>
-                        <MenuIcon sx={{ fontSize: "18px" }} />
+                        <MenuIcon sx={{ fontSize: "18px" }} />q
                     </Box>
+                    <Box
+                        sx={{
+                            position: "absolute",
+                            top: "50%",
+                            left: "4%",
+
+                            width: "100px",
+                            height: "90px",
+                            backgroundImage: `url('/hbx.svg')`,
+                            backgroundSize: "contain",
+                            backgroundRepeat: "no-repeat",
+                            backgroundPosition: "center",
+                            transform: "translate(-50%, -50%) rotate(5deg)",
+                            zIndex: 0,
+
+                        }}
+                    />
 
                     <Box sx={{ display: "flex", justifyContent: "flex-start", alignItems: "center", gap: 1 }}>
                         <Typography sx={{ fontSize: { xs: "14px", md: "18px" }, }}> ABC Restaurant</Typography>

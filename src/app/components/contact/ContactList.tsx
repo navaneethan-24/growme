@@ -25,7 +25,7 @@ const drawerSx = {
     height: "calc(100vh - 64px)",
     width: { xs: "95vw", md: "50vw" },
     mt: "74px",
-    borderRadius: "22px 0px 0px 0px",
+    borderRadius: "12px 12px 12px 12px",
     border: "1px solid rgba(255, 101, 1, 0.5)",
     pb: 4,
     overflowY: "auto",
@@ -95,8 +95,6 @@ export default function ContactList() {
                             width: "300px", height: "50px", px: 1.5
                         }}>
                             <Image src="/srch.png" alt="srch" width={13} height={13} style={{ objectFit: "contain" }} />
-
-
                             <TextField placeholder="Search..." variant="standard" fullWidth
                                 slotProps={{ input: { disableUnderline: true } }}
                                 sx={{ "& input": { fontSize: "14px", fontWeight: "500", color: "#1E1E1E", ml: 1 } }}
@@ -104,19 +102,18 @@ export default function ContactList() {
 
                         </Box>
 
-
                         {/* Filter */}
                         <Box onClick={openFilterDrawer} sx={{ cursor: "pointer" }}>
                             <Box sx={{
                                 display: { xs: "none", sm: "flex", }, flexDirection: "row", justifyContent: "center", alignItems: "center",
-                                backgroundColor: "#FFFFFF", border: "1px solid #E2E8F0", borderRadius: "8px",
-                                width: "70px", height: "50px", gap: 1
+                                backgroundColor: "#FFFFFF", border: "1px solid #E2E8F0", borderRadius: "8px", px: 1,
+                                width: "90px", height: "50px", gap: 1
                             }}>
                                 <Image src="/filter.png" alt="filter" width={12} height={12} />
 
                                 <Typography sx={{ fontSize: { xs: "10px", md: "15px" }, fontWeight: "400" }}> Filter </Typography>
                             </Box>
-                        </Box>
+                        </Box>  
 
 
 
