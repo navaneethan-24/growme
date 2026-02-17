@@ -6,7 +6,7 @@ import AddIcon from '@mui/icons-material/Add';
 import ContactTable from "./ContactTable";
 import Filter from "./Filter";
 import { useContactStore } from "../controller/contactController";
-import AddContact from "../contact/AddContact";
+import ContactForm from "./ContactForm";
 import EditContact from "../contact/EditContact";
 import DeleteContact from "../contact/DeleteContact";
 import ImportFile from "./ImportFile";
@@ -46,10 +46,10 @@ export default function ContactList() {
         closeFilterDrawer,
         importDrawerOpen,
         closeImportDrawer,
-        addDrawerOpen,
-        closeAddContactDrawer,
-        editDrawerOpen,
-        closeEditContactDrawer,
+        selectedContactId,
+        openContactForm,
+        contactFormOpen,
+        closeContactForm,
 
     } = useContactStore();
 
@@ -58,13 +58,16 @@ export default function ContactList() {
 
 
     return (
-        <Box sx={{ width: { xs: "100%", md: `calc(100% -  80px)` }, minHeight: "100vh", bgcolor: "#F6F6F6" }}>
+        <Box sx={{
+            width: { xs: "100%", md: `calc(100% -  80px)` }, ml: { md: "80px" }, minHeight: "100vh",
+            overflow: "hidden", bgcolor: "#F6F6F6",
+
+        }}>
             <Container maxWidth={false} sx={{
                 pt: { xs: 10, sm: 11, md: 12 },
-                pl: { xs: 2, sm: 3, md: 8 },
-                pb: 4,
-                ml: { md: "50px" },
-                mx: "auto"
+                pl: { xs: 2, sm: 3, },
+                pb: 5,
+                mx: "auto",
 
             }}>
                 <Box sx={{
@@ -97,7 +100,7 @@ export default function ContactList() {
                             <Image src="/srch.png" alt="srch" width={13} height={13} style={{ objectFit: "contain" }} />
                             <TextField placeholder="Search..." variant="standard" fullWidth
                                 slotProps={{ input: { disableUnderline: true } }}
-                                sx={{ "& input": { fontSize: "14px", fontWeight: "500", color: "#1E1E1E", ml: 1 } }}
+                                sx={{ "& input": { fontSize: "14px", fontWeight: "400", color: "#787878", ml: 1 } }}
                             />
 
                         </Box>
@@ -113,7 +116,7 @@ export default function ContactList() {
 
                                 <Typography sx={{ fontSize: { xs: "10px", md: "15px" }, fontWeight: "400" }}> Filter </Typography>
                             </Box>
-                        </Box>  
+                        </Box>
 
 
 
@@ -127,7 +130,7 @@ export default function ContactList() {
                             <Typography sx={{ fontSize: { xs: "10px", md: "15px" }, fontWeight: "600", color: "#FF6501", textWrap: "nowrap" }}>
                                 Import Contacts
                             </Typography>
-                            <Box sx={{ width: "2px", height: "30px", backgroundColor: "#7175791A" }} />
+                            <Box sx={{ width: "1px", height: "30px", backgroundColor: "#7175791A", ml: 1 }} />
                             <KeyboardArrowDownIcon sx={{ color: "#FF6501" }} />
                         </Box>
 
@@ -141,13 +144,12 @@ export default function ContactList() {
                         </Box>
 
                         {/* Add Contact */}
-                        <Box onClick={openAddContactDrawer} sx={{
+                        <Box onClick={openContactForm} sx={{
                             display: { xs: "none", sm: "flex" }, justifyContent: "center", alignItems: "center", cursor: "pointer",
-                            backgroundColor: "#FF6501", borderRadius: "8px", width: "150px", height: "50px"
+                            backgroundColor: "#FF6501", borderRadius: "12px", width: "180px", height: "50px", mx: "auto"
                         }}>
-                            <AddIcon sx={{ color: "#FFFFFF", mr: 1 }} />
+                            <AddIcon sx={{ color: "#FFFFFF", }} />
                             <Typography sx={{ fontSize: { xs: "10px", md: "15px" }, fontWeight: "500", color: "white" }}> Add Contact </Typography>
-
                         </Box>
 
 
@@ -161,6 +163,7 @@ export default function ContactList() {
                         </Box>
                     </Box>
                 </Box>
+
                 {/* mbv searchbar */}
                 <Box sx={{ display: "flex", width: "100%", gap: 1 }}>
                     <Box sx={{
@@ -191,90 +194,59 @@ export default function ContactList() {
 
                 {/* Filter */}
                 {/* <Box sx={{ display: "flex", justifyContent: "flex-end", alignContent: "center", mb: 2, borderRadius: "12px" }}>
-                        <Box sx={{ display: "flex", justifyContent: "flex-start", alignItems: "center", gap: 1 }}>
-                            <Typography sx={{ fontSize: { xs: "10px", md: "15px" }, fontWeight: "500", color: "#717579", mr: 2 }}>
-                                Applied Filters :
-                            </Typography>
+                    <Box sx={{ display: "flex", justifyContent: "flex-start", alignItems: "center", gap: 1 }}>
+                        <Typography sx={{ fontSize: { xs: "10px", md: "15px" }, fontWeight: "500", color: "#717579", mr: 2 }}>
+                            Applied Filters :
+                        </Typography>
+                    </Box>
+
+                    <Box sx={{
+                        display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", gap: 5,
+                        bgcolor: "#1E1E1E0F", p: 2, borderRadius: "12px"
+                    }}>
+                        <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+                            <Typography sx={{ color: "#000000", fontSize: "14px", fontWeight: 400 }}>Groups:</Typography>
+                            <Typography sx={{ color: "#000000", fontSize: "14px", fontWeight: 400 }}>VIP Group,+1</Typography>
                         </Box>
-
-                        <Box sx={{
-                            display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", gap: 5, 
-                            bgcolor: "#1E1E1E0F",p: 2, borderRadius: "12px" }}>
-                            <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-                                <Typography sx={{ color: "#000000", fontSize: "14px", fontWeight: 400 }}>Groups:</Typography>
-                                <Typography sx={{ color: "#000000", fontSize: "14px", fontWeight: 400 }}>VIP Group,+1</Typography>
-                            </Box>
-                            <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-                                <Typography sx={{ color: "#000000", fontSize: "14px", fontWeight: 400 }}>Tags:</Typography>
-                                <Typography sx={{ color: "#000000", fontSize: "14px", fontWeight: 400 }}>Bulk Orders,+2</Typography>
-                            </Box>
-                            <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-                                <Typography sx={{ color: "#000000", fontSize: "14px", fontWeight: 400 }}>Opt-In: </Typography>
-                                <Typography sx={{ color: "#000000", fontSize: "14px", fontWeight: 400 }}>Yes</Typography>
-                            </Box>
-                            <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-                                <Typography sx={{ color: "#000000", fontSize: "14px", fontWeight: 400 }}>Gender: </Typography>
-                                <Typography sx={{ color: "#000000", fontSize: "14px", fontWeight: 400 }}>Male</Typography>
-                            </Box>
-                            <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-                                <Typography sx={{ color: "#000000", fontSize: "14px", fontWeight: 400 }}>Profession:</Typography>
-                                <Typography sx={{ color: "#000000", fontSize: "14px", fontWeight: 400 }}>Doctor</Typography>
-                            </Box>
+                        <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+                            <Typography sx={{ color: "#000000", fontSize: "14px", fontWeight: 400 }}>Tags:</Typography>
+                            <Typography sx={{ color: "#000000", fontSize: "14px", fontWeight: 400 }}>Bulk Orders,+2</Typography>
                         </Box>
+                        <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+                            <Typography sx={{ color: "#000000", fontSize: "14px", fontWeight: 400 }}>Opt-In: </Typography>
+                            <Typography sx={{ color: "#000000", fontSize: "14px", fontWeight: 400 }}>Yes</Typography>
+                        </Box>
+                        <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+                            <Typography sx={{ color: "#000000", fontSize: "14px", fontWeight: 400 }}>Gender: </Typography>
+                            <Typography sx={{ color: "#000000", fontSize: "14px", fontWeight: 400 }}>Male</Typography>
+                        </Box>
+                        <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+                            <Typography sx={{ color: "#000000", fontSize: "14px", fontWeight: 400 }}>Profession:</Typography>
+                            <Typography sx={{ color: "#000000", fontSize: "14px", fontWeight: 400 }}>Doctor</Typography>
+                        </Box>
+                    </Box>
 
-                        
-                    </Box> */}
 
+                </Box> */}
 
 
                 <ContactTable rows={rows} />
 
-                <Drawer anchor="right"
-                    open={filterDrawerOpen}
-                    onClose={closeFilterDrawer}
-                    slotProps={{
-                        paper: {
-                            sx: drawerSx
-                        }
-                    }}>
+                <Drawer anchor="right" open={filterDrawerOpen} onClose={closeFilterDrawer}
+                    slotProps={{ paper: { sx: drawerSx } }}>
                     <Filter onClose={closeFilterDrawer} />
                 </Drawer>
 
-                <Drawer anchor="right"
-                    open={importDrawerOpen}
-                    onClose={closeImportDrawer}
+                <Drawer anchor="right" open={importDrawerOpen} onClose={closeImportDrawer}
                     slotProps={{
-                        paper: {
-                            sx: drawerSx
-                        }
+                        paper: { sx: drawerSx }
                     }}>
                     <ImportFile onClose={closeImportDrawer} />
                 </Drawer>
 
-                <Drawer
-                    anchor="right"
-                    open={addDrawerOpen}
-                    onClose={closeAddContactDrawer}
-                    slotProps={{
-                        paper: {
-                            sx: drawerSx
-
-                        }
-                    }}>
-                    <AddContact onClose={closeAddContactDrawer} />
-                </Drawer>
-
-                <Drawer
-                    anchor="right"
-                    open={editDrawerOpen}
-                    onClose={closeEditContactDrawer}
-                    slotProps={{
-                        paper: {
-                            sx: drawerSx
-
-                        }
-                    }}>
-                    <EditContact onClose={closeAddContactDrawer} />
+                <Drawer anchor="right" open={contactFormOpen} onClose={closeContactForm}
+                    slotProps={{paper: { sx: drawerSx }}}>
+                    <ContactForm onClose={closeContactForm}      contactId={selectedContactId}    />
                 </Drawer>
 
                 <DeleteContact />

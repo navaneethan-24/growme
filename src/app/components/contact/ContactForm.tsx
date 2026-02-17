@@ -6,7 +6,7 @@ import Image from "next/image";
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { useContactStore } from "../controller/contactController";
 import CancelIcon from '@mui/icons-material/Cancel';
-import ToggleChipbtn from "../../custmUx/ToggleChipbtn";
+import ToggleChipbtn from "../../custmux/ToggleChipbtn";
 
 
 const genders = ["Male", "Female", "Other"];
@@ -14,13 +14,15 @@ const profession = ["Developer", "Designer", "Manager", "Student", "Business"];
 const groups = ["VIP Group", "Main Group", "Family", "Friends", "Work", "Clients", "Leads", "Blocked", "Archived"]
 const tags = ["Food", "Sweet", "Offers", "Tech", "Gym", "Beauty"]
 
-export default function AddContact({ onClose }: { onClose: () => void }) {
+export default function ContactForm(props: any) {
+const{ onClose, contactId }=props;
 
-  const { addDrawerOpen, day, month, year } = useContactStore();
+
+  const { contactFormOpen, day, month, year } = useContactStore();
   const addContactGender = useContactStore((state) => state.addContactGender);
   const addContactProfession = useContactStore((state) => state.addContactProfession);
   const setFilterValue = useContactStore((state) => state.setFilterValue);
-  const closeAddContactDrawer = useContactStore((state) => state.closeAddContactDrawer);
+  const closeContactForm = useContactStore((state) => state.closeAddContactDrawer);
 
   return (
     <Box>
@@ -29,12 +31,21 @@ export default function AddContact({ onClose }: { onClose: () => void }) {
         px: { xs: 2, sm: 4 }, py: 2, borderBottom: "1px solid rgba(255, 101, 1, 0.5)", display: "flex", justifyContent: "space-between",
       }}>
         <Box>
-          <Typography sx={{ fontSize: { xs: "18px", md: "22px" }, fontWeight: 600 }}>Add Contact</Typography>
+          <Typography sx={{ fontSize: { xs: "18px", md: "22px" }, fontWeight: 600 }}>
+            {contactId ? "Edit Contact" : "Add Contact"}
+          </Typography>
+
+          {contactId
+            ? <Typography sx={{ fontSize: "13px", color: "#787878", display: { xs: "none", md: "block" } }}>
+                Edit lets you change or update information.
+              </Typography>
+            : ""}
+
         </Box>
         <IconButton sx={{ p: 0, ":hover": { backgroundColor: "transparent" } }}
           onClick={(e) => {
             e.stopPropagation();
-            closeAddContactDrawer();
+            closeContactForm();
           }}>
           <Image src="/clfltr.png" alt="close" width={22} height={22} />
         </IconButton>

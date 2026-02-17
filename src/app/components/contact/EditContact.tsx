@@ -6,7 +6,7 @@ import Image from "next/image";
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { useContactStore } from "../controller/contactController";
 import CancelIcon from '@mui/icons-material/Cancel';
-import ToggleChipbtn from "../../custmUx/ToggleChipbtn";
+import ToggleChipbtn from "../../custmux/ToggleChipbtn";
 
 
 const genders = ["Male", "Female", "Other"];
@@ -14,7 +14,7 @@ const profession = ["Developer", "Designer", "Manager", "Student", "Business"];
 const groups = ["VIP Group", "Main Group", "Family", "Friends", "Work", "Clients", "Leads", "Blocked", "Archived"]
 const tags = ["Food", "Sweet", "Offers", "Tech", "Gym", "Beauty"]
 
-export default function EditContact({onClose}: {onClose: () => void}) {
+export default function EditContact({ onClose }: { onClose: () => void }) {
 
   const { editDrawerOpen, day, month, year } = useContactStore();
   const addContactGender = useContactStore((state) => state.addContactGender);

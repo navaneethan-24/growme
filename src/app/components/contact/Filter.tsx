@@ -7,7 +7,7 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 import { useContactStore } from "../controller/contactController";
 import CancelIcon from '@mui/icons-material/Cancel';
-import ToggleChipbtn from "../../custmUx/ToggleChipbtn";
+import ToggleChipbtn from "../../custmux/ToggleChipbtn";
 
 
 export default function Filter({ onClose }: { onClose: () => void }) {
@@ -33,8 +33,10 @@ export default function Filter({ onClose }: { onClose: () => void }) {
   return (
     <Box>
       {/* HEADER */}
-      <Box sx={{ px: { xs: 2, sm: 4 }, py: 2, borderBottom: "1px solid rgba(255, 101, 1, 0.5)",
-       display: "flex", justifyContent: "space-between" }}>
+      <Box sx={{
+        px: { xs: 2, sm: 4 }, py: 2, borderBottom: "1px solid rgba(255, 101, 1, 0.5)",
+        display: "flex", justifyContent: "space-between"
+      }}>
         <Box>
           <Typography sx={{ fontSize: { xs: "18px", md: "22px" }, fontWeight: 600 }}>Filters</Typography>
           <Typography sx={{ display: { xs: "none", md: "block" }, fontSize: "15px", color: "#787878" }}>

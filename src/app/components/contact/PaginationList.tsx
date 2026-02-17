@@ -1,20 +1,10 @@
 import { Box, Button, MenuItem, Select, Typography } from "@mui/material"
 import { useContactStore } from "../controller/contactController";
-import { mockrows } from "../Services/Mock";
+import { MockContact } from "../services/Mock";
 import Image from "next/image";
 import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined';
 
 
-interface PaginationProps {
-    rowsPerPage: number;
-    rowCounts: number[];
-    page: number;
-    totalPages: number;
-    pages: number[];
-    totalItems: number;
-    onPageChange: (page: number) => void;
-    onRowsPerPageChange: (value: number) => void;
-}
 
 export default function PaginationList({
     rowsPerPage,
@@ -25,24 +15,24 @@ export default function PaginationList({
     totalItems,
     onPageChange,
     onRowsPerPageChange
-}: PaginationProps) {
+}: any) {
 
     return (
 
         <Box sx={{
             display: 'flex', flexDirection: { xs: "column", md: "row" }, justifyContent: "space-between", alignItems: "center",
-            gap: { xs: 2, md: 3 }, mt: { xs: 3, md: 2 } ,
+            gap: { xs: 2, md: 3 }, mt: { xs: 3, md: 2 },
         }}>
             {/* page result */}
             <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", gap: 3, }}>
-                <Typography sx={{ fontSize: "12px", color: '#717579' }}>  Rows per page:</Typography>
+                <Typography sx={{ fontSize: "12px", fontWeight: 500, color: '#717579' }}>  Rows per page:</Typography>
                 <Select value={rowsPerPage} onChange={(e) => onRowsPerPageChange(Number(e.target.value))}
                     IconComponent={(props) => <KeyboardArrowDownOutlinedIcon {...props}
                         sx={{ color: '#FF6501 !important', fontSize: "25px" }} />}
                     sx={{
                         width: "80px", height: "38px", backgroundColor: "#FFFFFF", borderRadius: "30px",
                         fontSize: "15px", textAlign: 'center', border: "1px solid transparent",
-                        "& fieldset": { 
+                        "& fieldset": {
                             border: "none",
                         },
                     }}>
@@ -53,9 +43,9 @@ export default function PaginationList({
                     ))}
                 </Select>
                 <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", gap: 1, }}>
-                    <Typography sx={{ fontSize: "14px" }}>{mockrows.length} </Typography>
-                    <Typography sx={{ fontSize: "14px" }}>results</Typography>
-                    
+                    <Typography sx={{ fontSize: "14px", fontWeight: 400 }}>{MockContact.length} </Typography>
+                    <Typography sx={{ fontSize: "14px", fontWeight: 400 }}>results</Typography>
+
                 </Box>
             </Box>
 
@@ -63,7 +53,7 @@ export default function PaginationList({
             <Box >
                 <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", gap: 1, }} >
                     {/* Prev */}
-                    <Button disabled={page === 1} onClick={() => onPageChange(page - 1, )}
+                    <Button disabled={page === 1} onClick={() => onPageChange(page - 1,)}
                         sx={{
                             px: 3, py: 1, border: "1px solid rgba(255, 101, 1, 0.2)", borderRadius: "12px",
                             display: "flex", alignItems: "center", gap: 1, justifyContent: "center"
@@ -104,7 +94,7 @@ export default function PaginationList({
                     </Box>
 
                     {/* Next */}
-                    <Button disabled={page === totalPages} onClick={()   => onPageChange(page + 1) }
+                    <Button disabled={page === totalPages} onClick={() => onPageChange(page + 1)}
                         sx={{
                             px: 3, py: 1, border: "1px solid rgba(255, 101, 1, 0.2)", borderRadius: "12px",
                             fontSize: "15px", fontWeight: 500, color: "#FF6501", textTransform: "none",

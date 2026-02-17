@@ -1,5 +1,26 @@
 import { create } from "zustand";
-import _ from "lodash";
+import _, { last } from "lodash";
+
+
+const getDefaultFormModel = () => {
+  let model: any = {
+    name: "",
+    gender: "",
+    professions: "",
+    groups: "",
+    tags: "",
+    optInStatus: "",
+    lastEngagement: "",
+    mobileNumber: "",
+    birthOfDay: "",
+    birthOfMonth: "",
+    birthofYear: "",
+  };
+  return model;
+}
+
+
+
 
 const getDefaultState = () => ({
   // Drawers
@@ -7,23 +28,13 @@ const getDefaultState = () => ({
   importDrawerOpen: false,
   addDrawerOpen: false,
   editDrawerOpen: false,
+  contactFormOpen: false,
   chip: false,
   deleteContactOpen: false,
   SlideNavOpen: false,
   isMobileDrawerOpen: false,
 
-  // Filter values
-  selectedCountry: [] as string[],
-  selectedTag: [] as string[],
-  selectedGroups: [] as string[],
-  selectedOptInStatus: [] as string[],
-  profession: [] as string[],
-  gender: [] as string[],
-  lastEngagement: [] as string[],
-  day: "",
-  month: "",
-  year: "",
-  activeTagId: null as string | null,
+
 
   // Pagination
   rowCounts: [1, 2, 3, 4, 5],
@@ -35,30 +46,6 @@ const getDefaultState = () => ({
   // Page toggle
   activePage: "contact" as "contact" | "group",
 
-  //add contact
-  addgenderDropDownOpen: false,
-  addContactGender: "",
-  addConactProfession: "",
-  addContactGroup: "",
-  addContactTag: "",
-  addContactMobileNumber: "",
-  addcontactBirthofDay: "",
-  addContactBirthofMonth: "",
-  addContactBirthofYear: "",
-
-  addchipToggleStates: {} as Record<string, boolean>,
-
-  //edit contact
-  genderDropDownOpen: false,
-  editContactGender: "",
-  editConactProfession: "",
-  editContactGroup: "",
-  editContactTag: "",
-  editContactMobileNumber: "",
-  editcontactBirthofDay: "",
-  editContactBirthofMonth: "",
-  editContactBirthofYear: "",
-  editchipToggleStates: {} as Record<string, boolean>,
 });
 
 // --- DRAWER ACTIONS ---
@@ -68,11 +55,17 @@ const closeFilterDrawer = (set: any) => () => set({ filterDrawerOpen: false });
 const openImportDrawer = (set: any) => () => set({ importDrawerOpen: true });
 const closeImportDrawer = (set: any) => () => set({ importDrawerOpen: false });
 
-const openAddContactDrawer = (set: any) => () => set({ addDrawerOpen: true });
-const closeAddContactDrawer = (set: any) => () => set({ addDrawerOpen: false });
 
-const openEditContactDrawer = (set: any) => () => set({ editDrawerOpen: true });
-const closeEditContactDrawer = (set: any) => () => set({ editDrawerOpen: false });
+
+const openContactForm = (set: any) => (contact: any) =>
+  set({
+    contactFormOpen: true,
+    selectedContactId: contact.id
+  });
+
+const closeContactForm = (set: any) =>
+  () => set({ contactFormOpen: false, selectedContactId: "" });
+
 
 const openDeleteContact = (set: any) => () => set({ deleteContactOpen: true });
 const closeDeleteContact = (set: any) => () => set({ deleteContactOpen: false });
@@ -136,11 +129,8 @@ export const useContactStore = create<any>((set: any, get: any) => ({
   openImportDrawer: openImportDrawer(set),
   closeImportDrawer: closeImportDrawer(set),
 
-  openAddContactDrawer: openAddContactDrawer(set),
-  closeAddContactDrawer: closeAddContactDrawer(set),
-
-  openEditContactDrawer: openEditContactDrawer(set),
-  closeEditContactDrawer: closeEditContactDrawer(set),
+  openContactForm: openContactForm(set),
+  closeContactForm: closeContactForm(set),
 
   openDeleteContact: openDeleteContact(set),
   closeDeleteContact: closeDeleteContact(set),
@@ -168,6 +158,6 @@ export const useContactStore = create<any>((set: any, get: any) => ({
   // slidebat toggle actions
   toggleSlideNav: toggleSlideNav(set, get),
 
-  
+
 
 }));

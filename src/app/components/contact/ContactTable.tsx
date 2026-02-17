@@ -1,9 +1,7 @@
 import { Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Checkbox, IconButton, Paper, Typography, MenuItem, Popover, Card, CardContent, Divider, } from "@mui/material";
 import Image from "next/image";
-import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined';
-import { mockrows } from "../Services/Mock";
+import { MockContact } from "../services/Mock";
 import { useContactStore } from "../controller/contactController";
-import MoreVertIcon from '@mui/icons-material/MoreVert';
 import PaginationList from "./PaginationList";
 
 export default function ContactTable({ rows }: { rows: any[] }) {
@@ -18,11 +16,12 @@ export default function ContactTable({ rows }: { rows: any[] }) {
         isMbvActionOpen,
         openMobileAction,
         closeMobileAction,
+        openContactForm
     } = useContactStore();
-    const tableRowData = mockrows;
+    const tableRowData = MockContact;
     const startIndex = (page - 1) * rowsPerPage;
     const endIndex = startIndex + rowsPerPage;
-    const paginatedRows = mockrows.slice(startIndex, endIndex);
+    const paginatedRows = MockContact.slice(startIndex, endIndex);
     const pages = visiblePageCount(tableRowData.length)
     const total = totalPages(tableRowData.length)
 
@@ -31,9 +30,11 @@ export default function ContactTable({ rows }: { rows: any[] }) {
         { dot: "#FF9F34", bg: "#FF9F341A" },
         { dot: "#F0432C", bg: "#F0432C1A" },
     ];
-    const getRandomColor = () =>
-        colors[Math.floor(Math.random() * colors.length)];
-    
+    const getRandomColor = () => colors[Math.floor(Math.random() * colors.length)];
+
+
+
+
     return (
         < >
             {/* DeskTop view */}
@@ -128,6 +129,7 @@ export default function ContactTable({ rows }: { rows: any[] }) {
                                         "& th, & td": {
                                             textAlign: "left",
                                             verticalAlign: "middle",
+                                            borderBottom: "none",
                                         },
                                     }}>
                                         <TableCell align="left">
@@ -141,13 +143,12 @@ export default function ContactTable({ rows }: { rows: any[] }) {
 
                                         <TableCell align="left" sx={{ p: 0 }}>
                                             <Box sx={{ display: "flex", justifyContent: "flex-start", alignItems: "center", gap: 1, ml: 2 }}>
-                                                {row.mbCt?.map((ct: string, i: number) => (
-                                                    <Image
-                                                        key={i} src={ct} alt="icon" width={18} height={18} unoptimized style={{ display: "block", objectFit: "contain" }} />
-                                                ))}
+
+                                                <Image src={`/${row.mbCt}.png`} alt="icon" width={18} height={18} unoptimized style={{ display: "block", objectFit: "contain" }} />
+
 
                                                 <Typography sx={{ color: "#717579", fontSize: 13, fontWeight: 500 }}>
-                                                    {row.mobiles}
+                                                    {row.mobileNumber}
                                                 </Typography>
                                             </Box>
                                         </TableCell>
@@ -156,15 +157,15 @@ export default function ContactTable({ rows }: { rows: any[] }) {
                                         {/* Groups */}
                                         <TableCell align="left" sx={{ flexGrow: 1, }}>
                                             <Box sx={{ display: "flex", justifyContent: "flex-start", alignItems: "center", gap: 1, ml: 2 }}>
-                                                {row.groups?.map((g: string, i: number) => (
-                                                    <Box key={i} sx={{
-                                                        bgcolor: "#F4F4F4", borderRadius: "8px", px: "10px ", py: "5px",
-                                                    }}>
-                                                        <Typography sx={{ color: "#717579", fontSize: "13px", fontWeight: "500", }}>
-                                                            {g}
-                                                        </Typography>
-                                                    </Box>
-                                                ))}
+
+                                                <Box sx={{
+                                                    bgcolor: "#F4F4F4", borderRadius: "8px", px: "10px ", py: "5px",
+                                                }}>
+                                                    <Typography sx={{ color: "#717579", fontSize: "13px", fontWeight: "500", }}>
+                                                        {row.group}
+                                                    </Typography>
+                                                </Box>
+
                                             </Box>
                                         </TableCell>
 
@@ -209,54 +210,41 @@ export default function ContactTable({ rows }: { rows: any[] }) {
                                         </TableCell>
 
                                         <TableCell align="left">
-                                            <IconButton onClick={() => console.log("comment")} sx={{
-                                                display: { xs: "none", sm: "inline-flex" }, width: 30, height: 30, ml: 1,
-                                            }}>
-                                                <Image src="/comt.png" alt="comtb" width={30} height={30} />
-                                            </IconButton>
+                                            <TableCell align="left">
+                                                {/* Comment */}
+                                                <IconButton
+                                                    sx={{ display: { xs: "none", sm: "inline-flex" }, width: 30, height: 30, ml: 1 }}
+                                                >
+                                                    <Image src="/comt.png" alt="comment" width={30} height={30} />
+                                                </IconButton>
 
-                                            <IconButton onClick={() => console.log("status")} sx={{
-                                                display: { xs: "none", sm: "inline-flex" }, width: 30, height: 30, ml: 1
-                                            }}>
-                                                <Image src="/stustb.png" alt="stustb" width={30} height={30} />
-                                            </IconButton>
+                                                {/* Status */}
+                                                <IconButton
+                                                    sx={{ display: { xs: "none", sm: "inline-flex" }, width: 30, height: 30, ml: 1 }}
+                                                >
+                                                    <Image src="/stustb.png" alt="status" width={30} height={30} />
+                                                </IconButton>
 
-                                            <IconButton onClick={openEditContactDrawer} sx={{ width: 30, height: 30, ml: 1 }}>
-                                                <Image src="/edittb.png" alt="edittb" width={30} height={30} />
-                                            </IconButton>
+                                                {/* Edit */}
+                                                <IconButton
+                                                    onClick={() => openContactForm(row)}
+                                                    sx={{ display: { xs: "none", sm: "inline-flex" }, width: 30, height: 30, ml: 1 }}
+                                                >
+                                                    <Image src="/edittb.png" alt="edit" width={30} height={30} />
+                                                </IconButton>
 
-                                            <IconButton onClick={openDeleteContact} sx={{ width: 30, height: 30, ml: 1 }}>
-                                                <Image src="/deltb.png" alt="deltb" width={30} height={30} />
-                                            </IconButton>
+                                                {/* Delete */}
+                                                <IconButton
+                                                    onClick={openDeleteContact}
+                                                    sx={{ display: { xs: "none", sm: "inline-flex" }, width: 30, height: 30, ml: 1 }}
+                                                >
+                                                    <Image src="/deltb.png" alt="delete" width={30} height={30} />
+                                                </IconButton>
+                                            </TableCell>
 
-                                            <IconButton onClick={(e) => openMobileAction(e, row.id)}
-                                                sx={{ width: 30, height: 30, ml: 1 }}>
-                                                <MoreVertIcon sx={{ display: { xs: "inline-flex", sm: "none" } }} />
-                                            </IconButton>
 
-                                            <Popover
-                                                open={isMbvActionOpen}
-                                                onClose={closeMobileAction}
-                                                anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-                                                transformOrigin={{ vertical: "top", horizontal: "right" }}
-                                            >
-                                                <MenuItem onClick={() => { console.log("comment"); closeMobileAction(); }}>
-                                                    <IconButton onClick={() => console.log("comment")} sx={{
-                                                        width: 30, height: 30, ml: 1,
-                                                    }}>
-                                                        <Image src="/comt.png" alt="comtb" width={30} height={30} />
-                                                    </IconButton>
-                                                </MenuItem>
-
-                                                <MenuItem onClick={() => { console.log("status"); closeMobileAction(); }}>
-                                                    <IconButton onClick={() => console.log("comment")} sx={{
-                                                        width: 30, height: 30, ml: 1,
-                                                    }}>
-                                                        <Image src="/stustb.png" alt="stustb" width={30} height={30} />
-                                                    </IconButton>
-                                                </MenuItem>``
-                                            </Popover>
                                         </TableCell>
+
                                     </TableRow>
                                 );
                             })}
@@ -281,11 +269,11 @@ export default function ContactTable({ rows }: { rows: any[] }) {
                                     <Box >
                                         <Typography sx={{ color: "#717579", fontSize: "13px", fontWeight: "500", mb: 1 }}> Mobile </Typography>
                                         <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", }}>
-                                            {row.mbCt?.map((ct: string, i: number) => (
-                                                <Image
-                                                    key={i} src={ct} alt="icon" width={18} height={18} unoptimized
-                                                    style={{ display: "block", objectFit: "contain" }} />
-                                            ))}
+
+                                            <Image
+                                                src={`/${row.mbCt}.png`} alt="icon" width={18} height={18} unoptimized
+                                                style={{ display: "block", objectFit: "contain" }} />
+
                                             <Typography sx={{ color: "#1E1E1E", fontSize: 13, fontWeight: 500, ml: 1 }}>
                                                 {row.mobiles}
                                             </Typography>
@@ -333,25 +321,38 @@ export default function ContactTable({ rows }: { rows: any[] }) {
                                     <Checkbox sx={{ color: "#FF6501", fontSize: "5px" }} />
                                 </Box>
                                 <Box>
-                                    <IconButton onClick={() => console.log("comment")} sx={{
-                                        width: 30, height: 30, ml: 1,
-                                    }}>
-                                        <Image src="/comt.png" alt="comtb" width={30} height={30} />
-                                    </IconButton>
+                                    <TableCell align="left">
+                                        {/* Comment */}
+                                        <IconButton
+                                            sx={{ display: { xs: "none", sm: "inline-flex" }, width: 30, height: 30, ml: 1 }}
+                                        >
+                                            <Image src="/comt.png" alt="comment" width={30} height={30} />
+                                        </IconButton>
 
-                                    <IconButton onClick={() => console.log("status")} sx={{
-                                        width: 30, height: 30, ml: 1
-                                    }}>
-                                        <Image src="/stustb.png" alt="stustb" width={30} height={30} />
-                                    </IconButton>
+                                        {/* Status */}
+                                        <IconButton
+                                            sx={{ display: { xs: "none", sm: "inline-flex" }, width: 30, height: 30, ml: 1 }}
+                                        >
+                                            <Image src="/stustb.png" alt="status" width={30} height={30} />
+                                        </IconButton>
 
-                                    <IconButton onClick={openEditContactDrawer} sx={{ width: 30, height: 30, ml: 1 }}>
-                                        <Image src="/edittb.png" alt="edittb" width={30} height={30} />
-                                    </IconButton>
+                                        {/* Edit */}
+                                        <IconButton
+                                            onClick={() => openContactForm(row)}
+                                            sx={{ display: { xs: "none", sm: "inline-flex" }, width: 30, height: 30, ml: 1 }}
+                                        >
+                                            <Image src="/edittb.png" alt="edit" width={30} height={30} />
+                                        </IconButton>
 
-                                    <IconButton onClick={openDeleteContact} sx={{ width: 30, height: 30, ml: 1 }}>
-                                        <Image src="/deltb.png" alt="deltb" width={30} height={30} />
-                                    </IconButton>
+                                        {/* Delete */}
+                                        <IconButton
+                                            onClick={openDeleteContact}
+                                            sx={{ display: { xs: "none", sm: "inline-flex" }, width: 30, height: 30, ml: 1 }}
+                                        >
+                                            <Image src="/deltb.png" alt="delete" width={30} height={30} />
+                                        </IconButton>
+                                    </TableCell>
+
 
                                 </Box>
 
@@ -376,9 +377,6 @@ export default function ContactTable({ rows }: { rows: any[] }) {
                 onPageChange={(p: any) => setPage(p, tableRowData.length)}
                 onRowsPerPageChange={(v: any) => setRowValue(v)}
             />
-
-
-
         </>
 
     );

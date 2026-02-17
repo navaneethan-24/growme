@@ -26,14 +26,13 @@ export default function Header() {
                 <Box sx={{ display: "flex", justifyContent: "flex-start", alignItems: "center", gap: 1 }}>
 
                     <Box onClick={openMobileDrawer} sx={{ display: { xs: "flex", md: "none" }, justifyContent: "center", alignItems: "center", gap: 1 }}>
-                        <MenuIcon sx={{ fontSize: "18px" }} />q
+                        <MenuIcon sx={{ fontSize: "18px" }} />
                     </Box>
                     <Box
                         sx={{
                             position: "absolute",
                             top: "50%",
-                            left: "4%",
-
+                            left: "4%",     
                             width: "100px",
                             height: "90px",
                             backgroundImage: `url('/hbx.svg')`,
