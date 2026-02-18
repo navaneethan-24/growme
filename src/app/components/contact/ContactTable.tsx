@@ -1,4 +1,4 @@
-import { Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Checkbox, IconButton, Paper, Typography, MenuItem, Popover, Card, CardContent, Divider, } from "@mui/material";
+import { Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Checkbox, IconButton, Paper, Typography,  Card, CardContent, Divider, } from "@mui/material";
 import Image from "next/image";
 import { MockContact } from "../services/Mock";
 import { useContactStore } from "../controller/contactController";
@@ -322,14 +322,14 @@ const ContactTable = (props: any) => {
                                     <TableCell align="left">
                                         {/* Comment */}
                                         <IconButton
-                                            sx={{ display: { xs: "none", sm: "inline-flex" }, width: 30, height: 30, ml: 1 }}
+                                            sx={{ display: { xs: "inline-flex", sm: "none" }, width: 40, height: 40, ml: 1 }}
                                         >
                                             <Image src="/comt.png" alt="comment" width={30} height={30} />
                                         </IconButton>
 
                                         {/* Status */}
                                         <IconButton
-                                            sx={{ display: { xs: "none", sm: "inline-flex" }, width: 30, height: 30, ml: 1 }}
+                                            sx={{ display: { xs: "inline-flex", sm: "none" }, width: 30, height: 30, ml: 1 }}
                                         >
                                             <Image src="/stustb.png" alt="status" width={30} height={30} />
                                         </IconButton>
@@ -337,7 +337,7 @@ const ContactTable = (props: any) => {
                                         {/* Edit */}
                                         <IconButton
                                             onClick={() => openContactForm(row)}
-                                            sx={{ display: { xs: "none", sm: "inline-flex" }, width: 30, height: 30, ml: 1 }}
+                                            sx={{ display: { xs: "inline-flex", sm: "none" }, width: 30, height: 30, ml: 1 }}
                                         >
                                             <Image src="/edittb.png" alt="edit" width={30} height={30} />
                                         </IconButton>
@@ -345,7 +345,7 @@ const ContactTable = (props: any) => {
                                         {/* Delete */}
                                         <IconButton
                                             onClick={openDeleteContact}
-                                            sx={{ display: { xs: "none", sm: "inline-flex" }, width: 30, height: 30, ml: 1 }}
+                                            sx={{ display: { xs: "inline-flex", sm: "none" }, width: 30, height: 30, ml: 1 }}
                                         >
                                             <Image src="/deltb.png" alt="delete" width={30} height={30} />
                                         </IconButton>

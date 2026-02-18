@@ -22,10 +22,9 @@ const rows = Array.from({ length: 50 }, (_, i) => ({
 
 
 const drawerSx = {
-    height: "calc(100vh - 64px)",
+    height: "100vh",
     width: { xs: "95vw", md: "50vw" },
-    mt: "74px",
-    borderRadius: "12px 12px 12px 12px",
+    borderRadius: "12px 0px 12px 0px",
     border: "1px solid rgba(255, 101, 1, 0.5)",
     pb: 4,
     overflowY: "auto",
@@ -126,7 +125,7 @@ const ContactList = () => {
                             backgroundColor: "#FFFFFF", borderRadius: "8px", p: 2,
                             maxWidth: "200px", height: "50px"
                         }}>
-                            <Typography sx={{ fontSize: { xs: "10px", md: "15px" }, fontWeight: "600", color: "#FF6501", textWrap: "nowrap" }}>
+                            <Typography sx={{ fontSize: { xs: "10px", md: "15px" }, fontWeight: "500", color: "#FF6501", textWrap: "nowrap" }}>
                                 Import Contacts
                             </Typography>
                             <Box sx={{ width: "1px", height: "30px", backgroundColor: "#7175791A", ml: 1 }} />
@@ -148,7 +147,7 @@ const ContactList = () => {
                             backgroundColor: "#FF6501", borderRadius: "12px", width: "180px", height: "50px", mx: "auto"
                         }}>
                             <AddIcon sx={{ color: "#FFFFFF", }} />
-                            <Typography sx={{ fontSize: { xs: "10px", md: "15px" }, fontWeight: "500", color: "white" }}> Add Contact </Typography>
+                            <Typography sx={{ fontSize: { xs: "10px", md: "15px" }, fontWeight: "600", color: "white" }}> Add Contact </Typography>
                         </Box>
 
 
