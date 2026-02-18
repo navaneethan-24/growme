@@ -5,11 +5,11 @@ import Image from "next/image";
 import AddIcon from '@mui/icons-material/Add';
 import ContactTable from "./ContactTable";
 import Filter from "./Filter";
-import { useContactStore } from "../controller/contactController";
 import ContactForm from "./ContactForm";
-import EditContact from "../contact/EditContact";
 import DeleteContact from "../contact/DeleteContact";
 import ImportFile from "./ImportFile";
+import { useContactStore } from "../controller/contactController";
+
 
 const rows = Array.from({ length: 50 }, (_, i) => ({
     id: i + 1,
@@ -34,14 +34,13 @@ const drawerSx = {
 };
 
 
-export default function ContactList() {
+const ContactList = () => {
     const {
         openFilterDrawer,
         openImportDrawer,
         openAddContactDrawer,
         activePage,
-        setContactPage,
-        setGroupPage,
+        setActivePage,
         filterDrawerOpen,
         closeFilterDrawer,
         importDrawerOpen,
@@ -75,14 +74,14 @@ export default function ContactList() {
                     gap: { xs: 1, md: 2 }, mb: { xs: 2, md: 4 }
                 }}>
                     <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: { xs: 0.5, md: 2 } }}>
-                        <Box onClick={() => setContactPage()} sx={{
+                        <Box onClick={() => setActivePage("contact")} sx={{
                             border: isContact ? "1px solid #FF6501" : "none", borderRadius: "8px", px: 2, py: 1, cursor: "pointer",
                         }}>
                             <Typography variant="h6" sx={{ color: isContact ? "#FF6501" : "#1E1E1E", fontWeight: 600, fontSize: { xs: "12px", md: "15px" } }}>
                                 Contacts
                             </Typography>
                         </Box>
-                        <Box onClick={() => setGroupPage()} sx={{
+                        <Box onClick={() => setActivePage("group")} sx={{
                             border: isGroup ? "1px solid #FF6501" : "none", borderRadius: "8px", px: 2, py: 1, cursor: "pointer",
                         }}>
                             <Typography variant="h6" sx={{ color: isGroup ? "#FF6501" : "#1E1E1E", fontWeight: 600, fontSize: { xs: "12px", md: "15px" } }}>
@@ -169,7 +168,7 @@ export default function ContactList() {
                     <Box sx={{
                         display: { xs: "flex", md: "none" }, justifyContent: "flex-start", alignItems: "center",
                         width: "100%", height: "40px", minWidth: "200px", backgroundColor: "#FFFFFF",
-                        border: "1px solid #EFF0F6", borderRadius: "8px", px: 1, mb: 2.
+                        border: "1px solid #EFF0F6", borderRadius: "8px", px: 1, mb: 2,
                     }}>
                         <IconButton>
                             <Image src="/srch.png" alt="srch" width={15} height={15} style={{ objectFit: "contain" }} />
@@ -245,8 +244,8 @@ export default function ContactList() {
                 </Drawer>
 
                 <Drawer anchor="right" open={contactFormOpen} onClose={closeContactForm}
-                    slotProps={{paper: { sx: drawerSx }}}>
-                    <ContactForm onClose={closeContactForm}      contactId={selectedContactId}    />
+                    slotProps={{ paper: { sx: drawerSx } }}>
+                    <ContactForm onClose={closeContactForm} contactId={selectedContactId} />
                 </Drawer>
 
                 <DeleteContact />
@@ -255,3 +254,6 @@ export default function ContactList() {
 
     );
 }
+
+
+export default ContactList;

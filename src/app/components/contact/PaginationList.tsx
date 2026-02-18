@@ -1,12 +1,9 @@
 import { Box, Button, MenuItem, Select, Typography } from "@mui/material"
-import { useContactStore } from "../controller/contactController";
 import { MockContact } from "../services/Mock";
 import Image from "next/image";
 import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined';
 
-
-
-export default function PaginationList({
+const PaginationList = ({
     rowsPerPage,
     rowCounts,
     page,
@@ -15,7 +12,7 @@ export default function PaginationList({
     totalItems,
     onPageChange,
     onRowsPerPageChange
-}: any) {
+}: any) =>  {
 
     return (
 
@@ -120,3 +117,5 @@ export default function PaginationList({
 
     )
 }
+
+export default PaginationList;

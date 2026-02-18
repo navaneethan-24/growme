@@ -2,7 +2,7 @@ import { Box, Button, Dialog, DialogActions, Typography } from "@mui/material";
 import Image from "next/image";
 import { useContactStore } from "../controller/contactController";
 
-export default function DeleteContact() {
+const  DeleteContact = () =>  {
     const { openDeleteContact, closeDeleteContact, deleteContactOpen } = useContactStore();
     return (
         <Dialog
@@ -57,3 +57,5 @@ export default function DeleteContact() {
 
     )
 }
+
+export default DeleteContact;

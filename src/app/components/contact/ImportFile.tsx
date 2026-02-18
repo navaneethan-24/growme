@@ -4,9 +4,8 @@ import {  Box, Drawer, IconButton, Typography, Button,  } from "@mui/material";
 import Image from "next/image";
 import { useContactStore } from "../controller/contactController";
 
-export default function ImportFile({onClose}: {onClose: () => void}) {
-  const {importDrawerOpen, openImportDrawer, closeImportDrawer} = useContactStore();
-
+const  ImportFile =  ({onClose}: {onClose: () => void}) =>  {
+  const { closeImportDrawer} = useContactStore();
   return (
     <Box>
       {/* HEADER */}
@@ -53,3 +52,5 @@ export default function ImportFile({onClose}: {onClose: () => void}) {
     </Box>
   );
 }
+
+export default ImportFile;

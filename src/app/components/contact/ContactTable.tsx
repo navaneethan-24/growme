@@ -4,20 +4,18 @@ import { MockContact } from "../services/Mock";
 import { useContactStore } from "../controller/contactController";
 import PaginationList from "./PaginationList";
 
-export default function ContactTable({ rows }: { rows: any[] }) {
-    const { value: rowsPerPage,
-        page, setPage: setPage,
+const ContactTable = (props: any) => {
+
+    const {
+        openDeleteContact,
+        openContactForm,
+        setPage,
         totalPages,
-        rowCounts,
         setRowValue,
         visiblePageCount,
-        openEditContactDrawer,
-        openDeleteContact,
-        isMbvActionOpen,
-        openMobileAction,
-        closeMobileAction,
-        openContactForm
+        pagination,
     } = useContactStore();
+    const { value: rowsPerPage, page } = pagination;
     const tableRowData = MockContact;
     const startIndex = (page - 1) * rowsPerPage;
     const endIndex = startIndex + rowsPerPage;
@@ -209,41 +207,41 @@ export default function ContactTable({ rows }: { rows: any[] }) {
 
                                         </TableCell>
 
+
                                         <TableCell align="left">
-                                            <TableCell align="left">
-                                                {/* Comment */}
-                                                <IconButton
-                                                    sx={{ display: { xs: "none", sm: "inline-flex" }, width: 30, height: 30, ml: 1 }}
-                                                >
-                                                    <Image src="/comt.png" alt="comment" width={30} height={30} />
-                                                </IconButton>
+                                            {/* Comment */}
+                                            <IconButton
+                                                sx={{ display: { xs: "none", sm: "inline-flex" }, width: 30, height: 30, ml: 1 }}
+                                            >
+                                                <Image src="/comt.png" alt="comment" width={30} height={30} />
+                                            </IconButton>
 
-                                                {/* Status */}
-                                                <IconButton
-                                                    sx={{ display: { xs: "none", sm: "inline-flex" }, width: 30, height: 30, ml: 1 }}
-                                                >
-                                                    <Image src="/stustb.png" alt="status" width={30} height={30} />
-                                                </IconButton>
+                                            {/* Status */}
+                                            <IconButton
+                                                sx={{ display: { xs: "none", sm: "inline-flex" }, width: 30, height: 30, ml: 1 }}
+                                            >
+                                                <Image src="/stustb.png" alt="status" width={30} height={30} />
+                                            </IconButton>
 
-                                                {/* Edit */}
-                                                <IconButton
-                                                    onClick={() => openContactForm(row)}
-                                                    sx={{ display: { xs: "none", sm: "inline-flex" }, width: 30, height: 30, ml: 1 }}
-                                                >
-                                                    <Image src="/edittb.png" alt="edit" width={30} height={30} />
-                                                </IconButton>
+                                            {/* Edit */}
+                                            <IconButton
+                                                onClick={() => openContactForm(row)}
+                                                sx={{ display: { xs: "none", sm: "inline-flex" }, width: 30, height: 30, ml: 1 }}
+                                            >
+                                                <Image src="/edittb.png" alt="edit" width={30} height={30} />
+                                            </IconButton>
 
-                                                {/* Delete */}
-                                                <IconButton
-                                                    onClick={openDeleteContact}
-                                                    sx={{ display: { xs: "none", sm: "inline-flex" }, width: 30, height: 30, ml: 1 }}
-                                                >
-                                                    <Image src="/deltb.png" alt="delete" width={30} height={30} />
-                                                </IconButton>
-                                            </TableCell>
-
-
+                                            {/* Delete */}
+                                            <IconButton
+                                                onClick={openDeleteContact}
+                                                sx={{ display: { xs: "none", sm: "inline-flex" }, width: 30, height: 30, ml: 1 }}
+                                            >
+                                                <Image src="/deltb.png" alt="delete" width={30} height={30} />
+                                            </IconButton>
                                         </TableCell>
+
+
+
 
                                     </TableRow>
                                 );
@@ -368,9 +366,9 @@ export default function ContactTable({ rows }: { rows: any[] }) {
 
 
             <PaginationList
-                rowsPerPage={rowsPerPage}
-                rowCounts={rowCounts}
-                page={page}
+                rowsPerPage={pagination.value}
+                rowCounts={pagination.rowCounts}
+                page={pagination.page}
                 totalPages={total}
                 pages={pages}
                 totalItems={tableRowData.length}
@@ -382,3 +380,4 @@ export default function ContactTable({ rows }: { rows: any[] }) {
     );
 }
 
+export default ContactTable;

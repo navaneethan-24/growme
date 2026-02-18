@@ -1,33 +1,21 @@
 "use client";
-
 import { Autocomplete, Box, Drawer, IconButton, TextField, Typography, Button, FormControl, MenuItem, Select, Chip } from "@mui/material";
 import Image from "next/image";
-
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-
 import { useContactStore } from "../controller/contactController";
 import CancelIcon from '@mui/icons-material/Cancel';
 import ToggleChipbtn from "../../custmux/ToggleChipbtn";
 
-
-export default function Filter({ onClose }: { onClose: () => void }) {
+const Filter = ({ onClose }: { onClose: () => void }) => {
   const {
-    selectedCountry,
-    selectedTag,
-    selectedGroups,
-    selectedOptInStatus,
-    profession,
-    gender,
-    lastEngagement,
+
     day,
     month,
     year,
     setFilterValue,
-
     resetFilterState,
-    filterDrawerOpen, closeFilterDrawer,
+    closeFilterDrawer,
   } = useContactStore();
-
 
 
   return (
@@ -215,3 +203,6 @@ export default function Filter({ onClose }: { onClose: () => void }) {
     </Box>
   );
 }
+
+
+export default Filter;

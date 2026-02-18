@@ -1,6 +1,6 @@
 "use client";
 
-import { Autocomplete, Box, Drawer, IconButton, TextField, Typography, Button, FormControl, MenuItem, Select, Chip } from "@mui/material";
+import { Box, IconButton, Typography, Button, FormControl, MenuItem, Select, Chip } from "@mui/material";
 import Image from "next/image";
 
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
@@ -8,21 +8,13 @@ import { useContactStore } from "../controller/contactController";
 import CancelIcon from '@mui/icons-material/Cancel';
 import ToggleChipbtn from "../../custmux/ToggleChipbtn";
 
-
 const genders = ["Male", "Female", "Other"];
 const profession = ["Developer", "Designer", "Manager", "Student", "Business"];
-const groups = ["VIP Group", "Main Group", "Family", "Friends", "Work", "Clients", "Leads", "Blocked", "Archived"]
-const tags = ["Food", "Sweet", "Offers", "Tech", "Gym", "Beauty"]
 
-export default function ContactForm(props: any) {
-const{ onClose, contactId }=props;
+const ContactForm = (props: any) => {
 
-
-  const { contactFormOpen, day, month, year } = useContactStore();
-  const addContactGender = useContactStore((state) => state.addContactGender);
-  const addContactProfession = useContactStore((state) => state.addContactProfession);
-  const setFilterValue = useContactStore((state) => state.setFilterValue);
-  const closeContactForm = useContactStore((state) => state.closeAddContactDrawer);
+  const { onClose, contactId } = props;
+  const { day, month, year, addContactGender, addContactProfession, setFilterValue, closeContactForm } = useContactStore();
 
   return (
     <Box>
@@ -37,8 +29,8 @@ const{ onClose, contactId }=props;
 
           {contactId
             ? <Typography sx={{ fontSize: "13px", color: "#787878", display: { xs: "none", md: "block" } }}>
-                Edit lets you change or update information.
-              </Typography>
+              Edit lets you change or update information.
+            </Typography>
             : ""}
 
         </Box>
@@ -275,3 +267,4 @@ const{ onClose, contactId }=props;
     </Box >
   );
 }
+export default ContactForm;
