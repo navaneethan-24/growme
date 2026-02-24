@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useContactStore } from "../controller/contactController";
 
 const  DeleteContact = () =>  {
-    const { openDeleteContact, closeDeleteContact, deleteContactOpen } = useContactStore();
+    const {  closeDeleteContact, deleteContactOpen } = useContactStore();
     return (
         <Dialog
             open={deleteContactOpen}

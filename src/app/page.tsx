@@ -1,3 +1,4 @@
+"use client";
 import { Box } from "@mui/material";
 import Header from "./components/landing-page/Header";
 import Footer from "./components/landing-page/Footer";

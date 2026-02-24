@@ -11,7 +11,6 @@ body {
 }
 
 
-/* Global IconButton hover background */
 .MuiIconButton-root:hover,
 .MuiIconButton-root:active,
 .MuiIconButton-root:focus-visible {

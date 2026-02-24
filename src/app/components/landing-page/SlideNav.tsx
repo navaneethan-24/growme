@@ -1,26 +1,26 @@
 "use client";
-import { Box, Button, Drawer, IconButton, ListItemButton, ListItemText, Typography } from "@mui/material";
+import { Box, Drawer, ListItemButton, ListItemText, Typography } from "@mui/material";
 import { useContactStore } from "../controller/contactController";
 import Image from "next/image";
 import LocalPhoneOutlinedIcon from '@mui/icons-material/LocalPhoneOutlined';
+import { useEffect } from "react";
+import { useHeaderStore } from "../controller/HeaderController";
 
-const navItems = [
-    { label: "Dashboard", icon: "Dashboard.png" },
-    { label: "Contacts", icon: "conatcts.png" },
-    { label: "Campaign", icon: "campaign.png" },
-    { label: "Inbox", icon: "Chat.png" },
-    { label: "Leads & Assignment", icon: "status.png" },
-    { label: "Automation", icon: "review.png" },
-    { label: "Chatbots", icon: "chatAI.png" },
-    { label: "Reports", icon: "status.png" },
-    { label: "Commuite", icon: "cart.png" },
-    { label: "Delivery", icon: "transport.png" },
-    { label: "Payments", icon: "bill.png" },
-    { label: "Settings", icon: "settings.png" },
-];
 
 export default function SlideNav() {
-    const { SlideNavOpen, toggleSlideNav, isMobileDrawerOpen, closeMobileDrawer } = useContactStore();
+    const {
+        SlideNavOpen,
+        toggleSlideNav,
+        isMobileDrawerOpen,
+        closeMobileDrawer,
+    } = useContactStore();
+
+    const { navItemsList, getNavItemsList } = useHeaderStore();
+
+    useEffect(() => {
+        getNavItemsList();
+    }, []);
+
     return (
         <Box>
             <Drawer variant="permanent" anchor="left"
@@ -69,7 +69,7 @@ export default function SlideNav() {
                         display: "flex", flexDirection: "column",
                         justifyContent: "center", alignItems: SlideNavOpen ? "flex-start" : "center",
                     }}>
-                        {navItems.map((item) => (
+                        {navItemsList?.map((item: any) => (
                             <ListItemButton key={item.label}
                                 sx={{ mb: 1, p: 1 }}>
                                 <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", }}>
@@ -109,9 +109,7 @@ export default function SlideNav() {
                             <Image src="/nav/sildeopen.png" alt="settings" width={18} height={18} style={{ objectFit: "contain" }} />
                         </Box>
                     </Box>
-
                 </Box>
-
             </Drawer>
 
             {/* mbv view */}
@@ -135,7 +133,7 @@ export default function SlideNav() {
                     }}>
                         <Box sx={{ display: "flex", width: "100%" }}>
                             <Image src="/nav/heroIcon.png" alt="heroIcon" width={28} height={28} style={{ objectFit: "contain" }} />
-                            <Box sx={{ display: "flex",  }}>
+                            <Box sx={{ display: "flex", }}>
                                 <Typography sx={{ fontSize: "22px", fontWeight: "800", color: "#1E1E1E" }}>row</Typography>
                                 <Typography sx={{ fontSize: "22px", fontWeight: "400", color: "#1E1E1E" }}>me</Typography>
                             </Box>
@@ -153,10 +151,10 @@ export default function SlideNav() {
                     </Box>
 
                     <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", }}>
-                        {navItems.map((item) => (
+                        {navItemsList?.map((item: any) => (
                             <ListItemButton key={item.label}
                                 sx={{
-                                    width: "100%", 
+                                    width: "100%",
                                     display: "flex", justifyContent: "flex-start", alignItems: "center",
                                 }}>
 
@@ -178,9 +176,6 @@ export default function SlideNav() {
 
                         ))}
                     </Box>
-
-
-
                 </Box>
             </Drawer>
         </Box>

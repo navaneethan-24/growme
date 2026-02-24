@@ -8,7 +8,6 @@ import ToggleChipbtn from "../../custmux/ToggleChipbtn";
 
 const Filter = ({ onClose }: { onClose: () => void }) => {
   const {
-
     day,
     month,
     year,

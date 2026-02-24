@@ -9,6 +9,8 @@ import ContactForm from "./ContactForm";
 import DeleteContact from "../contact/DeleteContact";
 import ImportFile from "./ImportFile";
 import { useContactStore } from "../controller/contactController";
+import { useEffect } from "react";
+import { get } from "lodash";
 
 
 const rows = Array.from({ length: 50 }, (_, i) => ({
@@ -48,11 +50,11 @@ const ContactList = () => {
         openContactForm,
         contactFormOpen,
         closeContactForm,
-
     } = useContactStore();
 
     const isContact = activePage === "contact";
     const isGroup = activePage === "group";
+
 
 
     return (
@@ -152,7 +154,7 @@ const ContactList = () => {
 
 
                         {/* mv */}
-                        <Box onClick={openAddContactDrawer} sx={{
+                        <Box onClick={openContactForm} sx={{
                             display: { xs: "flex", sm: "none" }, justifyContent: "center", alignItems: "center",
                             backgroundColor: "#FF6501", border: "1px solid #EFF0F6", borderRadius: "12px",
                             width: "40px", height: "40px",
@@ -223,8 +225,6 @@ const ContactList = () => {
                             <Typography sx={{ color: "#000000", fontSize: "14px", fontWeight: 400 }}>Doctor</Typography>
                         </Box>
                     </Box>
-
-
                 </Box> */}
 
 

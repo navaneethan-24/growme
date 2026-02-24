@@ -1,20 +1,20 @@
 "use client"
 
-import { AppBar, Box, IconButton, Toolbar, Typography } from "@mui/material"
+import { AppBar, Box, Toolbar, Typography } from "@mui/material";
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
 import { useContactStore } from "../controller/contactController";
 import Image from "next/image";
-import MenuIcon from "@mui/icons-material/Menu"
+import MenuIcon from "@mui/icons-material/Menu";
 
 export default function Header() {
-    const { activePage, isMobileDrawerOpen, openMobileDrawer } = useContactStore();
+    const { activePage, openMobileDrawer } = useContactStore();
     const togglePage = activePage === "contact" ? "Contacts" : "Groups";
 
     return (
         <AppBar
             sx={{
-                background: `linear-gradient(167deg,rgba(23, 23, 23, 1) 0%, rgba(255, 101, 1, 1) 50%, rgba(202, 53, 0, 1) 100%)`,
+                background: `linear-gradient(172deg,rgba(23, 23, 23, 1) 0%, rgba(255, 101, 1, 1) 60%, rgba(202, 53, 0, 1) 100%)`,
                 width: { xs: "100%", md: `calc(100% -  80px)` }, position: "fixed",
                 boxShadow: "none", overflow: "hidden"
             }}
@@ -24,7 +24,6 @@ export default function Header() {
                 px: { xs: 2, md: 3 }, position: "relative",
             }}>
                 <Box sx={{ display: "flex", justifyContent: "flex-start", alignItems: "center", gap: 1 }}>
-
                     <Box onClick={openMobileDrawer} sx={{ display: { xs: "flex", md: "none" }, justifyContent: "center", alignItems: "center", gap: 1 }}>
                         <MenuIcon sx={{ fontSize: "18px" }} />
                     </Box>
@@ -32,9 +31,9 @@ export default function Header() {
                         sx={{
                             position: "absolute",
                             top: "50%",
-                            left: "4%",     
-                            width: "100px",
-                            height: "90px",
+                            left: "3%",
+                            width: "80px",
+                            height: "80px",
                             backgroundImage: `url('/hbx.svg')`,
                             backgroundSize: "contain",
                             backgroundRepeat: "no-repeat",

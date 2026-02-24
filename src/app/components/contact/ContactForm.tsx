@@ -176,8 +176,8 @@ const ContactForm = (props: any) => {
                         border: "1px solid #EFF0F6",
                       },
                     }}
-                    IconComponent={(props) => <KeyboardArrowDownIcon {...props} sx={{ fontSize: 22 }} />}
-
+                    IconComponent={(props) => <KeyboardArrowDownIcon {...props} sx={{ fontSize: 22 }} />
+                  }
                   >
                   </Select>
                 </FormControl>
@@ -192,8 +192,8 @@ const ContactForm = (props: any) => {
                     }}>
                   </Box>
                 </Box>
-
               </Box>
+
               {/* DOB */}
               <Typography sx={{ fontSize: { xs: "14px", sm: "16px" }, fontWeight: 500, color: "#1E1E1E", mb: 2 }}>
                 Date of Birth
@@ -233,8 +233,6 @@ const ContactForm = (props: any) => {
                 ))}
               </Box>
             </Box>
-
-
           </Box>
         </Box>
 
@@ -257,13 +255,7 @@ const ContactForm = (props: any) => {
             Add
           </Button>
         </Box>
-
-
-
       </Box>
-
-
-
     </Box >
   );
 }

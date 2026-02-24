@@ -1,11 +1,11 @@
-import { Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Checkbox, IconButton, Paper, Typography,  Card, CardContent, Divider, } from "@mui/material";
+import { Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Checkbox, IconButton, Paper, Typography, Card, CardContent, Divider, } from "@mui/material";
 import Image from "next/image";
-import { MockContact } from "../services/Mock";
 import { useContactStore } from "../controller/contactController";
 import PaginationList from "./PaginationList";
+import { useEffect } from "react";
+
 
 const ContactTable = (props: any) => {
-
     const {
         openDeleteContact,
         openContactForm,
@@ -14,14 +14,17 @@ const ContactTable = (props: any) => {
         setRowValue,
         visiblePageCount,
         pagination,
+        getConactList,
+        contactList
     } = useContactStore();
     const { value: rowsPerPage, page } = pagination;
-    const tableRowData = MockContact;
+
     const startIndex = (page - 1) * rowsPerPage;
     const endIndex = startIndex + rowsPerPage;
-    const paginatedRows = MockContact.slice(startIndex, endIndex);
-    const pages = visiblePageCount(tableRowData.length)
-    const total = totalPages(tableRowData.length)
+    const paginatedRows = contactList.slice(startIndex, endIndex);
+    const pages = visiblePageCount(contactList.length)
+    const total = totalPages(contactList.length)
+
 
     const colors = [
         { dot: "#29B278", bg: "#29B2781A" },
@@ -30,8 +33,9 @@ const ContactTable = (props: any) => {
     ];
     const getRandomColor = () => colors[Math.floor(Math.random() * colors.length)];
 
-
-
+    useEffect(() => {
+        getConactList();
+    }, []);
 
     return (
         < >
@@ -121,7 +125,7 @@ const ContactTable = (props: any) => {
 
                         {/* BODY */}
                         <TableBody>
-                            {paginatedRows.map((row) => {
+                            {paginatedRows.map((row: any) => {
                                 return (
                                     <TableRow key={row.id} hover sx={{
                                         "& th, & td": {
@@ -155,7 +159,6 @@ const ContactTable = (props: any) => {
                                         {/* Groups */}
                                         <TableCell align="left" sx={{ flexGrow: 1, }}>
                                             <Box sx={{ display: "flex", justifyContent: "flex-start", alignItems: "center", gap: 1, ml: 2 }}>
-
                                                 <Box sx={{
                                                     bgcolor: "#F4F4F4", borderRadius: "8px", px: "10px ", py: "5px",
                                                 }}>
@@ -163,7 +166,6 @@ const ContactTable = (props: any) => {
                                                         {row.group}
                                                     </Typography>
                                                 </Box>
-
                                             </Box>
                                         </TableCell>
 
@@ -173,12 +175,12 @@ const ContactTable = (props: any) => {
                                                 display: "flex", justifyContent: "flex-start", alignItems: "center", gap: 1,
                                                 ml: 2, width: "100%"
                                             }}>
-                                                {row.tags?.map((g: string, i: number) => (
+                                                {row.tags?.map((tag: string, i: number) => (
                                                     <Box key={i} sx={{
                                                         bgcolor: "#F4F4F4", borderRadius: "8px", px: "10px ", py: "5px",
                                                     }}>
                                                         <Typography sx={{ color: "#717579", fontSize: "13px", fontWeight: "500", }}>
-                                                            {g}
+                                                            {tag}
                                                         </Typography>
                                                     </Box>
                                                 ))}
@@ -264,7 +266,7 @@ const ContactTable = (props: any) => {
                             {/* Mbv body */}
                             <Box>
                                 <Box sx={{ mb: 1, display: "flex", justifyContent: "space-between" }}>
-                                    <Box >
+                                    <Box>
                                         <Typography sx={{ color: "#717579", fontSize: "13px", fontWeight: "500", mb: 1 }}> Mobile </Typography>
                                         <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", }}>
 
@@ -273,14 +275,14 @@ const ContactTable = (props: any) => {
                                                 style={{ display: "block", objectFit: "contain" }} />
 
                                             <Typography sx={{ color: "#1E1E1E", fontSize: 13, fontWeight: 500, ml: 1 }}>
-                                                {row.mobiles}
+                                                {row.mobileNumber}
                                             </Typography>
                                         </Box>
                                     </Box>
                                     <Box>
                                         <Typography sx={{ color: "#717579", fontSize: "13px", fontWeight: "500", mb: 1 }}> Last Engagement </Typography>
-                                        <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", }}>
-                                            <Typography sx={{ color: "#1E1E1E", fontSize: 13, fontWeight: 500, ml: 1 }}>
+                                        <Box sx={{ display: "flex", justifyContent: "flex-end", alignItems: "center", }}>
+                                            <Typography sx={{ color: "#1E1E1E", fontSize: 13, fontWeight: 500, }}>
                                                 {row.lastEngagement}
                                             </Typography>
                                         </Box>
@@ -290,16 +292,15 @@ const ContactTable = (props: any) => {
                             </Box>
                             <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mb: 1 }}>
                                 <Box sx={{ display: "flex", justifyContent: "flex-start", alignItems: "center", gap: 1, }}>
-                                    {row.groups?.map((group: string, i: number) => (
-                                        <Box key={i} sx={{
-                                            bgcolor: "#F4F4F4", borderRadius: "8px", px: "10px ", py: "5px",
-                                        }}>
-                                            <Typography sx={{ color: "#717579", fontSize: "13px", fontWeight: "500", }}>
-                                                {group}
-                                            </Typography>
-                                        </Box>
-                                    ))}
+                                    <Box sx={{
+                                        bgcolor: "#F4F4F4", borderRadius: "8px", px: "10px ", py: "5px",
+                                    }}>
+                                        <Typography sx={{ color: "#717579", fontSize: "13px", fontWeight: "500", }}>
+                                            {row.group}
+                                        </Typography>
+                                    </Box>
                                 </Box>
+
                                 <Box sx={{ display: "flex", justifyContent: "flex-start", alignItems: "center", gap: 1, ml: 2 }}>
                                     {row.tags?.map((tag: string, i: number) => (
                                         <Box key={i} sx={{
@@ -314,15 +315,18 @@ const ContactTable = (props: any) => {
 
                             </Box>
                             <Divider sx={{ mb: 1 }} />
-                            <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", }}>
+                            <Box sx={{
+                                display: "flex", justifyContent: "space-between", alignItems: "center",     
+                                p: 0, m: 0,
+                            }}>
                                 <Box>
                                     <Checkbox sx={{ color: "#FF6501", fontSize: "5px" }} />
                                 </Box>
                                 <Box>
-                                    <TableCell align="left">
+                                    <Box >
                                         {/* Comment */}
                                         <IconButton
-                                            sx={{ display: { xs: "inline-flex", sm: "none" }, width: 40, height: 40, ml: 1 }}
+                                            sx={{ display: { xs: "inline-flex", sm: "none" }, width: 40, height: 40, ml: 1, }}
                                         >
                                             <Image src="/comt.png" alt="comment" width={30} height={30} />
                                         </IconButton>
@@ -349,14 +353,9 @@ const ContactTable = (props: any) => {
                                         >
                                             <Image src="/deltb.png" alt="delete" width={30} height={30} />
                                         </IconButton>
-                                    </TableCell>
-
-
+                                    </Box>
                                 </Box>
-
                             </Box>
-
-
                         </CardContent>
 
                     </Card>
@@ -371,8 +370,8 @@ const ContactTable = (props: any) => {
                 page={pagination.page}
                 totalPages={total}
                 pages={pages}
-                totalItems={tableRowData.length}
-                onPageChange={(p: any) => setPage(p, tableRowData.length)}
+                totalItems={contactList.length}
+                onPageChange={(p: any) => setPage(p, contactList.length)}
                 onRowsPerPageChange={(v: any) => setRowValue(v)}
             />
         </>

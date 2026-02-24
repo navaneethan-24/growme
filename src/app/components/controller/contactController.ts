@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { ContactService } from "../services/ContactService";
 
 const getDefaultFormModel = () => {
     let model: any = {
@@ -69,6 +70,18 @@ const visiblePageCount = (get: any) => (totalRows: number) => {
 };
 
 
+const getConactList = (set: any, get: any) => {
+    return async (pageState: any = null) => {
+        const contactService = ContactService();
+
+        const result = await contactService.getContactList();
+        let items = result;
+
+        set({ contactList: items });
+    }
+}
+
+
 export const useContactStore = create<any>((set: any, get: any) => ({
     contactFormOpen: false,
     filterDrawerOpen: false,
@@ -76,6 +89,7 @@ export const useContactStore = create<any>((set: any, get: any) => ({
     deleteContactOpen: false,
     isMobileDrawerOpen: false,
     SlideNavOpen: false,
+    contactList: [],
 
     openContactForm: openContactForm(set),
     closeContactForm: closeContactForm(set),
@@ -88,13 +102,14 @@ export const useContactStore = create<any>((set: any, get: any) => ({
     toggleSlideNav: toggleSlideNav(set, get),
     openMobileDrawer: openMobileDrawer(set),
     closeMobileDrawer: closeMobileDrawer(set),
+    getConactList: getConactList(set, get),
 
     fromModel: getDefaultFormModel(),
     selectedContactId: "",
 
     activePage: "contact" as "contact" | "group",
     setActivePage: setActivePage(set),
-    
+
     pagination: {
         rowCounts: [1, 2, 3, 4, 5],
         value: 5,

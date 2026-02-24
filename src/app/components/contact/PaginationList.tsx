@@ -1,5 +1,5 @@
 import { Box, Button, MenuItem, Select, Typography } from "@mui/material"
-import { MockContact } from "../services/Mock";
+import { contactData } from "../services/Data";
 import Image from "next/image";
 import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined';
 
@@ -9,13 +9,11 @@ const PaginationList = ({
     page,
     totalPages,
     pages,
-    totalItems,
     onPageChange,
     onRowsPerPageChange
-}: any) =>  {
+}: any) => {
 
     return (
-
         <Box sx={{
             display: 'flex', flexDirection: { xs: "column", md: "row" }, justifyContent: "space-between", alignItems: "center",
             gap: { xs: 2, md: 3 }, mt: { xs: 3, md: 2 },
@@ -40,27 +38,22 @@ const PaginationList = ({
                     ))}
                 </Select>
                 <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", gap: 1, }}>
-                    <Typography sx={{ fontSize: "14px", fontWeight: 400 }}>{MockContact.length} </Typography>
+                    <Typography sx={{ fontSize: "14px", fontWeight: 400 }}>{contactData.length} </Typography>
                     <Typography sx={{ fontSize: "14px", fontWeight: 400 }}>results</Typography>
-
                 </Box>
             </Box>
 
             {/* pagination */}
-            <Box >
+            <Box>
                 <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", gap: 1, }} >
                     {/* Prev */}
                     <Button disabled={page === 1} onClick={() => onPageChange(page - 1,)}
                         sx={{
+                            display: "flex", alignItems: "center", gap: 1, justifyContent: "center",
                             px: 3, py: 1, border: "1px solid rgba(255, 101, 1, 0.2)", borderRadius: "12px",
-                            display: "flex", alignItems: "center", gap: 1, justifyContent: "center"
-
-                        }}
-                    >
+                        }}>
                         <Box sx={{ width: 20, height: 20, position: "relative" }}>
-                            <Image
-                                src="/prvpg.png" alt="previous" fill style={{ objectFit: "contain" }}
-                            />
+                            <Image src="/prvpg.png" alt="previous" fill style={{ objectFit: "contain" }} />
                         </Box>
 
                         <Typography sx={{
@@ -69,7 +62,6 @@ const PaginationList = ({
                         }}>
                             Previous
                         </Typography>
-
                     </Button>
 
                     <Box sx={{
@@ -98,7 +90,6 @@ const PaginationList = ({
                             display: "flex", alignItems: "center", gap: 1, justifyContent: "center"
                         }}
                     >
-
                         <Typography sx={{
                             display: { xs: "none", sm: "block" }, fontSize: "15px", fontWeight: 500,
                             color: "#FF6501", textTransform: "none",
