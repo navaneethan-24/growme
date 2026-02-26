@@ -40,7 +40,7 @@ const ContactTable = (props: any) => {
     return (
         < >
             {/* DeskTop view */}
-            <Box sx={{ display: { xs: "none", md: "block" }, justifyContent: "center", alignItems: "center", }}>
+            <Box sx={{ display: { xs: "none", md: "block" }, justifyContent: "center", alignItems: "center",     }}>
                 <TableContainer component={Paper} sx={{
                     bgcolor: "#FFFFFF", borderRadius: "12px", mb: 2, width: "100%",
                     boxShadow: "none", border: "1px solid #E2E8F0"
@@ -160,7 +160,7 @@ const ContactTable = (props: any) => {
                                         <TableCell align="left" sx={{ flexGrow: 1, }}>
                                             <Box sx={{ display: "flex", justifyContent: "flex-start", alignItems: "center", gap: 1, ml: 2 }}>
                                                 <Box sx={{
-                                                    bgcolor: "#F4F4F4", borderRadius: "8px", px: "10px ", py: "5px",
+                                                    bgcolor: "#F4F4F4", borderRadius: "8px", px: "10px ", py: "7px",
                                                 }}>
                                                     <Typography sx={{ color: "#717579", fontSize: "13px", fontWeight: "500", }}>
                                                         {row.group}
@@ -177,7 +177,7 @@ const ContactTable = (props: any) => {
                                             }}>
                                                 {row.tags?.map((tag: string, i: number) => (
                                                     <Box key={i} sx={{
-                                                        bgcolor: "#F4F4F4", borderRadius: "8px", px: "10px ", py: "5px",
+                                                        bgcolor: "#F4F4F4", borderRadius: "8px", px: "10px ", py: "7px",
                                                     }}>
                                                         <Typography sx={{ color: "#717579", fontSize: "13px", fontWeight: "500", }}>
                                                             {tag}
@@ -241,8 +241,6 @@ const ContactTable = (props: any) => {
                                                 <Image src="/deltb.png" alt="delete" width={30} height={30} />
                                             </IconButton>
                                         </TableCell>
-
-
 
 
                                     </TableRow>

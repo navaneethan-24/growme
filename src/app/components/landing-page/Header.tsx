@@ -1,14 +1,15 @@
 "use client"
 
-import { AppBar, Box, Toolbar, Typography } from "@mui/material";
+import { AppBar, Box, Container, Toolbar, Typography } from "@mui/material";
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
-import { useContactStore } from "../controller/contactController";
 import Image from "next/image";
 import MenuIcon from "@mui/icons-material/Menu";
+import { useGlobalStore } from "../controller/GolbalController";
+
 
 export default function Header() {
-    const { activePage, openMobileDrawer } = useContactStore();
+    const { activePage, openMobileDrawer } = useGlobalStore();
     const togglePage = activePage === "contact" ? "Contacts" : "Groups";
 
     return (
@@ -19,6 +20,7 @@ export default function Header() {
                 boxShadow: "none", overflow: "hidden"
             }}
         >
+            <Container maxWidth="xl">
             <Toolbar sx={{
                 display: "flex", justifyContent: "space-between", alignItems: "center",
                 px: { xs: 2, md: 3 }, position: "relative",
@@ -45,7 +47,7 @@ export default function Header() {
                     />
 
                     <Box sx={{ display: "flex", justifyContent: "flex-start", alignItems: "center", gap: 1 }}>
-                        <Typography sx={{ fontSize: { xs: "14px", md: "18px" }, }}> ABC Restaurant</Typography>
+                        <Typography sx={{ fontSize: { xs: "14px", md: "18px" }, fontWeight: 500, }}> ABC Restaurant</Typography>
                         <Image src="/leftarw.png" alt="arrow" width={10} height={10} style={{ objectFit: "contain" }} />
                         <Typography sx={{ fontSize: { xs: "14px", md: "18px" }, }}> {togglePage}</Typography>
                     </Box>
@@ -66,6 +68,7 @@ export default function Header() {
                 </Box>
 
             </Toolbar>
+            </Container>
         </AppBar >
     )
 }

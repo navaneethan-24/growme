@@ -9,18 +9,7 @@ import ContactForm from "./ContactForm";
 import DeleteContact from "../contact/DeleteContact";
 import ImportFile from "./ImportFile";
 import { useContactStore } from "../controller/contactController";
-import { useEffect } from "react";
-import { get } from "lodash";
-
-
-const rows = Array.from({ length: 50 }, (_, i) => ({
-    id: i + 1,
-    name: `User ${i + 1}`,
-    mobile: `+91 9${Math.floor(100000000 + Math.random() * 900000000)}`,
-    groups: i % 2 === 0 ? ['Customers'] : ['Leads'],
-    tags: i % 3 === 0 ? ['Premium'] : ['Active'],
-    lastEngagement: `${i + 1} days ago`,
-}));
+import { useGlobalStore } from "../controller/GolbalController";
 
 
 const drawerSx = {
@@ -39,9 +28,6 @@ const ContactList = () => {
     const {
         openFilterDrawer,
         openImportDrawer,
-        openAddContactDrawer,
-        activePage,
-        setActivePage,
         filterDrawerOpen,
         closeFilterDrawer,
         importDrawerOpen,
@@ -52,9 +38,10 @@ const ContactList = () => {
         closeContactForm,
     } = useContactStore();
 
+    const { setActivePage, activePage } = useGlobalStore();
+
     const isContact = activePage === "contact";
     const isGroup = activePage === "group";
-
 
 
     return (
@@ -63,7 +50,7 @@ const ContactList = () => {
             overflow: "hidden", bgcolor: "#F6F6F6",
 
         }}>
-            <Container maxWidth={false} sx={{
+            <Container maxWidth="xl" sx={{
                 pt: { xs: 10, sm: 11, md: 12 },
                 pl: { xs: 2, sm: 3, },
                 pb: 5,
@@ -228,7 +215,7 @@ const ContactList = () => {
                 </Box> */}
 
 
-                <ContactTable rows={rows} />
+                <ContactTable  />
 
                 <Drawer anchor="right" open={filterDrawerOpen} onClose={closeFilterDrawer}
                     slotProps={{ paper: { sx: drawerSx } }}>

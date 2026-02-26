@@ -38,14 +38,7 @@ const closeImportDrawer = (set: any) => () => set({ importDrawerOpen: false });
 const openDeleteContact = (set: any) => () => set({ deleteContactOpen: true });
 const closeDeleteContact = (set: any) => () => set({ deleteContactOpen: false });
 
-const openMobileDrawer = (set: any) => () => set({ isMobileDrawerOpen: true });
-const closeMobileDrawer = (set: any) => () => set({ isMobileDrawerOpen: false });
 
-const setActivePage = (set: any) => (page: "contact" | "group") =>
-    set({ activePage: page });
-
-const toggleSlideNav = (set: any, get: any) => () =>
-    set({ SlideNavOpen: !get().SlideNavOpen });
 
 const totalPages = (get: any) => (totalRows: number) =>
     Math.max(1, Math.ceil(totalRows / get().pagination.value));
@@ -87,8 +80,6 @@ export const useContactStore = create<any>((set: any, get: any) => ({
     filterDrawerOpen: false,
     importDrawerOpen: false,
     deleteContactOpen: false,
-    isMobileDrawerOpen: false,
-    SlideNavOpen: false,
     contactList: [],
 
     openContactForm: openContactForm(set),
@@ -99,17 +90,11 @@ export const useContactStore = create<any>((set: any, get: any) => ({
     closeImportDrawer: closeImportDrawer(set),
     openDeleteContact: openDeleteContact(set),
     closeDeleteContact: closeDeleteContact(set),
-    toggleSlideNav: toggleSlideNav(set, get),
-    openMobileDrawer: openMobileDrawer(set),
-    closeMobileDrawer: closeMobileDrawer(set),
+
     getConactList: getConactList(set, get),
 
     fromModel: getDefaultFormModel(),
     selectedContactId: "",
-
-    activePage: "contact" as "contact" | "group",
-    setActivePage: setActivePage(set),
-
     pagination: {
         rowCounts: [1, 2, 3, 4, 5],
         value: 5,

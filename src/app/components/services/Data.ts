@@ -1,106 +1,3 @@
-export const contactData = [
-    {
-        id: 1,
-        name: "Beru",
-        mobileNumber: "+974 98765 43210",
-        mbCt: "c1",
-        group: "VIP Groups",
-        profession: "Doctor 46/M",
-        tags: ["Food"],
-        lastEngagement: "15 Dec 2025"
-    },
-    {
-        id: 2,
-        name: "Asta",
-        mobileNumber: "+1 98765 43210",
-        mbCt: "c2",
-        group: "Main Groups",
-        profession: "Doctor 47/M",
-        tags: ["Teachers"],
-        lastEngagement: "14 Aug 2025"
-    },
-    {
-        id: 3,
-        name: "Sung Jin Woo",
-        mobileNumber: "+44 98765 43210",
-        mbCt: "c3",
-        group: "3 Groups",
-        profession: "Doctor 48/M",
-        tags: ["Actors"],
-        lastEngagement: "13 Jun 2025"
-    },
-    {
-        id: 4,
-        name: "Igris",
-        mobileNumber: "+49 98765 43210",
-        mbCt: "c4",
-        group: "4 Groups",
-        profession: "Doctor 49/M",
-        tags: ["Songs"],
-        lastEngagement: "12 Jun 2025"
-    },
-    {
-        id: 5,
-        name: "Tank",
-        mobileNumber: "+34 98765 43210",
-        mbCt: "c5",
-        group: "5 Groups",
-        profession: "Doctor 50/M",
-        tags: ["Viral"],
-        lastEngagement: "11 Dec 2025"
-    },
-    {
-        id: 6,
-        name: "Billenon",
-        mobileNumber: "+44 98765 43210",
-        mbCt: "c6",
-        group: "6Groups",
-        profession: "Doctor 51/M",
-        tags: ["Food"],
-        lastEngagement: "10 Mar 2025"
-    },
-    {
-        id: 7,
-        name: "Levi",
-        mobileNumber: "+974 98765 43210",
-        mbCt: "c7",
-        group: "VIP Groups",
-        profession: "Doctor 52/M",
-        tags: ["Teachers"],
-        lastEngagement: "15 Dec 2025"
-    },
-    {
-        id: 8,
-        name: "Alyssa",
-        mobileNumber: "+1 98765 43210",
-        mbCt: "c8",
-        group: "Main Groups",
-        profession: "Doctor 53/M",
-        tags: ["Actors"],
-        lastEngagement: "14 Aug 2025"
-    },
-    {
-        id: 9,
-        name: "Eren",
-        mobileNumber: "+44 98765 43210",
-        mbCt: "c9",
-        group: "3 Groups",
-        profession: "Doctor 54/M",
-        tags: ["Songs"],
-        lastEngagement: "13 Jun 2025"
-    },
-    {
-        id: 10,
-        name: "Mikasa",
-        mobileNumber: "+49 98765 43210",
-        mbCt: "c10",
-        group: "4 Groups",
-        profession: "Doctor 55/M",
-        tags: ["Viral"],
-        lastEngagement: "12 Jun 2025"
-    }
-];
-
 export const navItems = [
     { label: "Dashboard", icon: "Dashboard.png" },
     { label: "Contacts", icon: "conatcts.png" },
@@ -114,4 +11,311 @@ export const navItems = [
     { label: "Delivery", icon: "transport.png" },
     { label: "Payments", icon: "bill.png" },
     { label: "Settings", icon: "settings.png" },
+];
+
+export const contactData = [
+  {
+    id: 1,
+    name: "Beru",
+    mobileNumber: "+9749876543210",
+    mbCt: "c1",
+    group: "VIP",
+    profession: "Doctor",
+    age: 46,
+    gender: "M",
+    tags: ["Food"],
+    lastEngagement: "2025-12-15"
+  },
+  {
+    id: 2,
+    name: "Asta",
+    mobileNumber: "+19876543210",
+    mbCt: "c2",
+    group: "Main",
+    profession: "Doctor",
+    age: 47,
+    gender: "M",
+    tags: ["Teachers"],
+    lastEngagement: "2025-08-14"
+  },
+  {
+    id: 3,
+    name: "Sung Jin Woo",
+    mobileNumber: "+449876543210",
+    mbCt: "c3",
+    group: "Secondary",
+    profession: "Doctor",
+    age: 48,
+    gender: "M",
+    tags: ["Actors"],
+    lastEngagement: "2025-06-13"
+  },
+  {
+    id: 4,
+    name: "Igris",
+    mobileNumber: "+499876543210",
+    mbCt: "c4",
+    group: "Secondary",
+    profession: "Doctor",
+    age: 49,
+    gender: "M",
+    tags: ["Songs"],
+    lastEngagement: "2025-06-12"
+  },
+  {
+    id: 5,
+    name: "Tank",
+    mobileNumber: "+349876543210",
+    mbCt: "c5",
+    group: "Secondary",
+    profession: "Doctor",
+    age: 50,
+    gender: "M",
+    tags: ["Viral"],
+    lastEngagement: "2025-12-11"
+  },
+
+  {
+    id: 6,
+    name: "Billenon",
+    mobileNumber: "+449111111111",
+    mbCt: "c1",
+    group: "Main",
+    profession: "Engineer",
+    age: 30,
+    gender: "M",
+    tags: ["Tech"],
+    lastEngagement: "2026-01-01"
+  },
+  {
+    id: 7,
+    name: "Levi",
+    mobileNumber: "+974922222222",
+    mbCt: "c2",
+    group: "VIP",
+    profession: "Consultant",
+    age: 32,
+    gender: "M",
+    tags: ["Strategy"],
+    lastEngagement: "2026-01-02"
+  },
+  {
+    id: 8,
+    name: "Alyssa",
+    mobileNumber: "+13333333333",
+    mbCt: "c3",
+    group: "Main",
+    profession: "Designer",
+    age: 29,
+    gender: "F",
+    tags: ["Art"],
+    lastEngagement: "2026-01-03"
+  },
+  {
+    id: 9,
+    name: "Eren",
+    mobileNumber: "+444444444444",
+    mbCt: "c4",
+    group: "Secondary",
+    profession: "Analyst",
+    age: 31,
+    gender: "M",
+    tags: ["Finance"],
+    lastEngagement: "2026-01-04"
+  },
+  {
+    id: 10,
+    name: "Mikasa",
+    mobileNumber: "+495555555555",
+    mbCt: "c5",
+    group: "Secondary",
+    profession: "Trainer",
+    age: 28,
+    gender: "F",
+    tags: ["Fitness"],
+    lastEngagement: "2026-01-05"
+  },
+
+  {
+    id: 11,
+    name: "Naruto",
+    mobileNumber: "+816666666666",
+    mbCt: "c1",
+    group: "Main",
+    profession: "Developer",
+    age: 27,
+    gender: "M",
+    tags: ["Anime"],
+    lastEngagement: "2026-01-06"
+  },
+  {
+    id: 12,
+    name: "Sasuke",
+    mobileNumber: "+817777777777",
+    mbCt: "c2",
+    group: "VIP",
+    profession: "Lawyer",
+    age: 31,
+    gender: "M",
+    tags: ["Action"],
+    lastEngagement: "2026-01-07"
+  },
+  {
+    id: 13,
+    name: "Sakura",
+    mobileNumber: "+818888888888",
+    mbCt: "c3",
+    group: "Secondary",
+    profession: "Doctor",
+    age: 29,
+    gender: "F",
+    tags: ["Health"],
+    lastEngagement: "2026-01-08"
+  },
+  {
+    id: 14,
+    name: "Kakashi",
+    mobileNumber: "+819999999999",
+    mbCt: "c4",
+    group: "Secondary",
+    profession: "Teacher",
+    age: 35,
+    gender: "M",
+    tags: ["Books"],
+    lastEngagement: "2026-01-09"
+  },
+  {
+    id: 15,
+    name: "Itachi",
+    mobileNumber: "+811010101010",
+    mbCt: "c5",
+    group: "Main",
+    profession: "Analyst",
+    age: 33,
+    gender: "M",
+    tags: ["Finance"],
+    lastEngagement: "2026-01-10"
+  },
+
+  {
+    id: 16,
+    name: "Goku",
+    mobileNumber: "+811111111111",
+    mbCt: "c1",
+    group: "VIP",
+    profession: "Athlete",
+    age: 32,
+    gender: "M",
+    tags: ["Fitness"],
+    lastEngagement: "2026-01-11"
+  },
+  {
+    id: 17,
+    name: "Vegeta",
+    mobileNumber: "+811212121212",
+    mbCt: "c2",
+    group: "Main",
+    profession: "CEO",
+    age: 40,
+    gender: "M",
+    tags: ["Leadership"],
+    lastEngagement: "2026-01-12"
+  },
+  {
+    id: 18,
+    name: "Gojo",
+    mobileNumber: "+811313131313",
+    mbCt: "c3",
+    group: "Secondary",
+    profession: "Consultant",
+    age: 34,
+    gender: "M",
+    tags: ["Tech"],
+    lastEngagement: "2026-01-13"
+  },
+  {
+    id: 19,
+    name: "Tanjiro",
+    mobileNumber: "+811414141414",
+    mbCt: "c4",
+    group: "Secondary",
+    profession: "Nurse",
+    age: 28,
+    gender: "M",
+    tags: ["Medical"],
+    lastEngagement: "2026-01-14"
+  },
+  {
+    id: 20,
+    name: "Zenitsu",
+    mobileNumber: "+811515151515",
+    mbCt: "c5",
+    group: "Main",
+    profession: "Marketer",
+    age: 27,
+    gender: "M",
+    tags: ["Sales"],
+    lastEngagement: "2026-01-15"
+  },
+
+  {
+    id: 21,
+    name: "Inosuke",
+    mobileNumber: "+811616161616",
+    mbCt: "c1",
+    group: "Secondary",
+    profession: "Trainer",
+    age: 29,
+    gender: "M",
+    tags: ["Martial"],
+    lastEngagement: "2026-01-16"
+  },
+  {
+    id: 22,
+    name: "Light",
+    mobileNumber: "+811717171717",
+    mbCt: "c2",
+    group: "VIP",
+    profession: "Student",
+    age: 24,
+    gender: "M",
+    tags: ["Crime"],
+    lastEngagement: "2026-01-17"
+  },
+  {
+    id: 23,
+    name: "L",
+    mobileNumber: "+811818181818",
+    mbCt: "c3",
+    group: "Main",
+    profession: "Detective",
+    age: 36,
+    gender: "M",
+    tags: ["Mystery"],
+    lastEngagement: "2026-01-18"
+  },
+  {
+    id: 24,
+    name: "Ichigo",
+    mobileNumber: "+811919191919",
+    mbCt: "c4",
+    group: "Secondary",
+    profession: "Engineer",
+    age: 30,
+    gender: "M",
+    tags: ["Action"],
+    lastEngagement: "2026-01-19"
+  },
+  {
+    id: 25,
+    name: "Rukia",
+    mobileNumber: "+812020202020",
+    mbCt: "c5",
+    group: "Main",
+    profession: "Artist",
+    age: 26,
+    gender: "F",
+    tags: ["Art"],
+    lastEngagement: "2026-01-20"
+  },
 ];

@@ -2,7 +2,7 @@ import { createTheme } from "@mui/material/styles";
 
 const theme = createTheme({
     typography: {
-        fontFamily: "var(--font-inter)  "
+        fontFamily: "var(--font-inter)"
     },
     palette: {
         background: {

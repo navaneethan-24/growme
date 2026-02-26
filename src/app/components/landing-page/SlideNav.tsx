@@ -1,11 +1,10 @@
 "use client";
 import { Box, Drawer, ListItemButton, ListItemText, Typography } from "@mui/material";
-import { useContactStore } from "../controller/contactController";
 import Image from "next/image";
 import LocalPhoneOutlinedIcon from '@mui/icons-material/LocalPhoneOutlined';
 import { useEffect } from "react";
-import { useHeaderStore } from "../controller/HeaderController";
 
+import { useGlobalStore } from "../controller/GolbalController";
 
 export default function SlideNav() {
     const {
@@ -13,9 +12,11 @@ export default function SlideNav() {
         toggleSlideNav,
         isMobileDrawerOpen,
         closeMobileDrawer,
-    } = useContactStore();
-
-    const { navItemsList, getNavItemsList } = useHeaderStore();
+        navItemsList,
+        getNavItemsList,
+        setActivePage,
+    } = useGlobalStore();
+ 
 
     useEffect(() => {
         getNavItemsList();
