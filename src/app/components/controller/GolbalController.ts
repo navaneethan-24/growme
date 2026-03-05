@@ -34,3 +34,4 @@ export const useGlobalStore = create<any>((set: any, get: any) => ({
     getNavItemsList: getNavItemsList(set, get),
 
 }));
+    

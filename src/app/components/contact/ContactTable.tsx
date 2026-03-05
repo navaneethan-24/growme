@@ -1,6 +1,6 @@
 import { Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Checkbox, IconButton, Paper, Typography, Card, CardContent, Divider, } from "@mui/material";
 import Image from "next/image";
-import { useContactStore } from "../controller/contactController";
+import { useContactStore } from "../controller/ContactController";
 import PaginationList from "./PaginationList";
 import { useEffect } from "react";
 
@@ -40,7 +40,7 @@ const ContactTable = (props: any) => {
     return (
         < >
             {/* DeskTop view */}
-            <Box sx={{ display: { xs: "none", md: "block" }, justifyContent: "center", alignItems: "center",     }}>
+            <Box sx={{ display: { xs: "none", md: "block" }, justifyContent: "center", alignItems: "center", }}>
                 <TableContainer component={Paper} sx={{
                     bgcolor: "#FFFFFF", borderRadius: "12px", mb: 2, width: "100%",
                     boxShadow: "none", border: "1px solid #E2E8F0"
@@ -314,7 +314,7 @@ const ContactTable = (props: any) => {
                             </Box>
                             <Divider sx={{ mb: 1 }} />
                             <Box sx={{
-                                display: "flex", justifyContent: "space-between", alignItems: "center",     
+                                display: "flex", justifyContent: "space-between", alignItems: "center",
                                 p: 0, m: 0,
                             }}>
                                 <Box>

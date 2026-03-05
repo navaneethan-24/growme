@@ -4,7 +4,7 @@ import { Box, IconButton, Typography, Button, FormControl, MenuItem, Select, Chi
 import Image from "next/image";
 
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import { useContactStore } from "../controller/contactController";
+import { useContactStore } from "../controller/ContactController";
 import CancelIcon from '@mui/icons-material/Cancel';
 import ToggleChipbtn from "../../custmux/ToggleChipbtn";
 
@@ -177,7 +177,7 @@ const ContactForm = (props: any) => {
                       },
                     }}
                     IconComponent={(props) => <KeyboardArrowDownIcon {...props} sx={{ fontSize: 22 }} />
-                  }
+                    }
                   >
                   </Select>
                 </FormControl>

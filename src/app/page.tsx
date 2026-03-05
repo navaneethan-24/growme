@@ -3,7 +3,7 @@ import { Box } from "@mui/material";
 import Header from "./components/landing-page/Header";
 import Footer from "./components/landing-page/Footer";
 import SlideNav from "./components/landing-page/SlideNav";
-import ContactGroup from "./components/contact-Group";
+import ContactGroup from "./components/ContactGroup";
 
 export default function Home() {
   return (

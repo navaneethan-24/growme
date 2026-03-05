@@ -1,9 +1,9 @@
 import { Box, Button, Dialog, DialogActions, Typography } from "@mui/material";
 import Image from "next/image";
-import { useContactStore } from "../controller/contactController";
+import { useContactStore } from "../controller/ContactController";
 
-const  DeleteContact = () =>  {
-    const {  closeDeleteContact, deleteContactOpen } = useContactStore();
+const DeleteContact = () => {
+    const { closeDeleteContact, deleteContactOpen } = useContactStore();
     return (
         <Dialog
             open={deleteContactOpen}

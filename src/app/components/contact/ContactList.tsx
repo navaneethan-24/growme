@@ -8,7 +8,7 @@ import Filter from "./Filter";
 import ContactForm from "./ContactForm";
 import DeleteContact from "../contact/DeleteContact";
 import ImportFile from "./ImportFile";
-import { useContactStore } from "../controller/contactController";
+import { useContactStore } from "../controller/ContactController";
 import { useGlobalStore } from "../controller/GolbalController";
 
 
@@ -215,7 +215,7 @@ const ContactList = () => {
                 </Box> */}
 
 
-                <ContactTable  />
+                <ContactTable />
 
                 <Drawer anchor="right" open={filterDrawerOpen} onClose={closeFilterDrawer}
                     slotProps={{ paper: { sx: drawerSx } }}>
